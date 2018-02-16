@@ -5,6 +5,6 @@ var windowController = require('../../controllers/window')
 var win;
 btn.addEventListener('click', (e) => {
     e.preventDefault();
-    windowController.showWindow(win, '../../index2.html', 400, 500)
+    windowController.showWindow(win, 'index2.html', 400, 500)
     console.log('It\'s work :D')
 })
