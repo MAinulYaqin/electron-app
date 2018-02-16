@@ -3,11 +3,14 @@ var {join} = require('path');
 var url = require('url');
 
 var {app, BrowserWindow, Menu} = electron;
-// var browserWindow = electron.BrowserWindow;
+var config = require('./config');
 var mainWin, secondWin;
 
 /**
- * 
+ *
+ * @param {Variable} window
+    You must have one empty variable to create window.
+    simply.. one window is equal to one empty variable
  * @param {String} f 
     File pathname
  * @param {Number} h 
@@ -15,43 +18,44 @@ var mainWin, secondWin;
  * @param {Number} w 
     Window's width
  * @description
- *  Show new window function
+ *  Function to create new window
  */
-function showWindow(f, h, w) {
+function showWindow(window ,f, h, w) {
     // Declared window
-    mainWin = new BrowserWindow({
+    window = new BrowserWindow({
         width: w,
         height: h
     });
     // Look up for the file's pathname
     let file = join(__dirname, f);
     // Window's function
-    mainWin.on('close', () => {
-        win = null;
-    });
-    mainWin.loadURL(url.format({
+    window.on('close', () => { window = null; });
+    window.on('closed', () => { app.quit(); })
+    window.loadURL(url.format({
         protocol: 'file',
         pathname: file,
         slashes: true
     }));
-    mainWin.show();
-
+    window.show();
     // Menu top bar
     const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     Menu.setApplicationMenu(mainMenu)
 }
 
 const mainMenuTemplate = [{
-    label: 'file',
-    subMenu: [{
-        label: 'Tmabahkan Siswa'
+    label: 'File',
+    submenu: [{
+        label: 'Tambahkan Siswa',
+        click() { showWindow(secondWin, 'index2.html', 400, 500) }
     }, {
         label: 'Hapus Siswa'
     }, {
         label: 'Update Data Siswa'
+    }, {
+        label: 'Exit',
+        click() { app.quit(); }
     }]
 }, {
-    label: 'close',
     // Check if the platform is mac (darwin) or something else
     accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
     click() {
@@ -59,6 +63,28 @@ const mainMenuTemplate = [{
     }
 }]
 
+console.log(mainMenuTemplate.length)
+// Another setting for mac
+if (process.platform == 'darwin') {
+    mainMenuTemplate.unshift({});
+}
+
+if (config.NODE_ENV !== 'production') {
+    mainMenuTemplate.push({
+        label: 'Developer Tools',
+        submenu: [{
+            label: 'Toggle Developer Tools',
+            accelerator: config.toggle_devTools,
+            click(item, focusedWindow) {
+                focusedWindow.toggleDevTools();
+            }
+        }, {
+            label: 'Reload',
+            role: 'reload'
+        }]
+    })
+}
+
 app.on('ready', () => {
-    showWindow('index.html', 600, 800)
+    showWindow(mainWin ,'index.html', 600, 800)
 })
