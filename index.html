@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Ini title</title>
-	
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<!-- Icon -->
-	<link rel="shortcut icon" href="public/images/js.png">
+	<link rel="shortcut icon" href="assets/icons/icon.ico">
 
 	<link rel="import" href="index2.html">
-	
+
 	<link rel="stylesheet" href="public/stylesheets/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" href="public/stylesheets/style.css">
 </head>
+
 <body>
-	<div class="container">
+	<div class='circle' id="circle-loader">
+		<div class='inner'>
+			<div class='full'></div>
+			<div class='semi-wrap'>
+				<div class='semi-r yellow appear'></div>
+				<div class='semi-r yellow'></div>
+				<div class='semi-t red appear'></div>
+				<div class='semi-t red'></div>
+				<div class='semi-t'></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" id="container" style="visibility: hidden">
 		<div class="navbar">
 			<ul>
-				<li><span class="navbar-brand">hastro</span></li>
+				<li>
+					<span class="navbar-brand">hastro</span>
+				</li>
 				<li class="search-bar">
 					<div>
 						<input type="text" name="cari" placeholder="Looking for something ?">
-						<button type="submit" class="btn add-on"><i class="fa fa-search"></i></button>
+						<button type="submit" class="btn add-on">
+							<i class="fa fa-search"></i>
+						</button>
 					</div>
 				</li>
 			</ul>
@@ -35,7 +54,9 @@
 		</div>
 	</div>
 	<script>
-		require('./public/javascripts/main')
+		// require('./public/javascripts/main')
+		require('./public/javascripts/loader')
 	</script>
 </body>
+
 </html>
