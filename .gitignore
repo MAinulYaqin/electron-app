@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# style, css
+assets/stylesheets/font-awesome
+
 # Runtime data
 pids
 *.pid
