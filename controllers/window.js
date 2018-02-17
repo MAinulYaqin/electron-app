@@ -2,7 +2,6 @@
 // This controller i create for *.js inside /public/javascripts
 var electron = require('electron');
 var {BrowserWindow} = electron.remote
-var {Menu} = electron;
 // Built-in module
 var join = require('path').join;
 var url  = require('url');
@@ -30,8 +29,6 @@ module.exports = {
         Max width of the window :: not required ::
      * @param {Number} maxH
         max Height of the window :: not required ::
-     * @param {Array} menus
-        Create menus on top bar of the application :: not required ::
      */
     showWindow: (win, f, w, h, maxW, maxH, menus) => {
         // create window
@@ -42,21 +39,13 @@ module.exports = {
             maxHeight: maxH
         })
         // Look up for the file's pathname
-        let file = join(__dirname, '../' + f)
+        let file = join(__dirname, '../sections' + f)
         // Another setting for window
         win.loadURL(url.format({
             pathname: file,
             protocol: 'file',
             slashes: true
         }))
-        // Set application's menus
-        let menuTemplate;
-        if (menus == undefined || menus.length < 0 || menus == null) {
-            return
-        } else {
-            menuTemplate = Menu.buildFromTemplate(menus)
-            Menu.setApplicationMenu(menuTemplate)
-        }
         // Show & close the app
         win.on('close', () => { win = null })
         win.show()

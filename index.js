@@ -3,41 +3,9 @@ var {join} = require('path');
 var url = require('url');
 
 var {app, BrowserWindow, Menu} = electron
-var config = require('./config');
+var config = require('./assets/config');
 // Empty variable for windows
 var mainWin, secondWin;
-
-function mainWindow (win, f, w, h, maxW, maxH) {
-    // create window
-    win = new BrowserWindow({
-        width: w,
-        height: h,
-        maxWidth: maxW,
-        maxHeight: maxH
-    })
-    // Look up for the file's pathname
-    let file = join(__dirname, f)
-    // Another setting for window
-    win.loadURL(url.format({
-        pathname: file,
-        protocol: 'file',
-        slashes: true
-    }))
-    // Show & close the app
-    win.on('close', () => { win = null })
-    win.show()
-}
-
-function setApplicationMenus (menus) {
-    // Set application's menus
-    let menuTemplate;
-    if (menus == undefined || menus.length < 0 || menus == null) {
-        return
-    } else {
-        menuTemplate = Menu.buildFromTemplate(menus)
-        Menu.setApplicationMenu(menuTemplate)
-    }
-}
 
 const mainMenuTemplate = [{
     label: 'File',
@@ -78,6 +46,38 @@ if (config.NODE_ENV !== 'production') {
             role: 'reload'
         }]
     })
+}
+
+function mainWindow (win, f, w, h, maxW, maxH) {
+    // create window
+    win = new BrowserWindow({
+        width: w,
+        height: h,
+        maxWidth: maxW,
+        maxHeight: maxH
+    })
+    // Look up for the file's pathname
+    let file = join(__dirname, f)
+    // Another setting for window
+    win.loadURL(url.format({
+        pathname: file,
+        protocol: 'file',
+        slashes: true
+    }))
+    // Show & close the app
+    win.on('closed', () => { win = null })
+    win.show()
+}
+
+function setApplicationMenus (menus) {
+    // Set application's menus
+    let menuTemplate;
+    if (menus == undefined || menus.length < 0 || menus == null) {
+        return
+    } else {
+        menuTemplate = Menu.buildFromTemplate(menus)
+        Menu.setApplicationMenu(menuTemplate)
+    }
 }
 
 app.on('ready', () => {
