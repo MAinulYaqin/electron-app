@@ -1,10 +1,17 @@
 "use strict";
-
+// This controller i create for *.js inside /public/javascripts
 var electron = require('electron');
-var {BrowserWindow, Menu} = electron.remote
+var {BrowserWindow} = electron.remote
+var {Menu} = electron;
 // Built-in module
 var join = require('path').join;
 var url  = require('url');
+
+function required () {
+    if (this.target.length <= 0) {
+        throw new Error('This parameter is required')
+    }
+}
 
 module.exports = {
     /**
@@ -16,41 +23,42 @@ module.exports = {
         File's name.
          + it must be on the root level
      * @param {Number} w
-        Window's width
+        Window's width :: not required ::
      * @param {Number} h
-        Window's height
-     * @param {Array} m
-        It will create top-bar menu.
-     * @example 
-     *  Var menu = [{
-     *  label: 'menu',
-     *   submenu: [{
-     *     label: 'I\'m Sub Menu'
-     *   }]
-     * }]
+        Window's height :: not required ::
+     * @param {Number} maxW
+        Max width of the window :: not required ::
+     * @param {Number} maxH
+        max Height of the window :: not required ::
+     * @param {Array} menus
+        Create menus on top bar of the application :: not required ::
      */
-    showWindow: (win, f, w, h, m) => {
-        // Window's setting
+    showWindow: (win, f, w, h, maxW, maxH, menus) => {
+        // create window
         win = new BrowserWindow({
             width: w,
-            height: h
-        });
-        // look up for the file's location
-        var file = join(__dirname, '../', f);
-
-        // Top menu for the application
-        var topMenu = Menu.buildFromTemplate(m)
-        if (m !== undefined && m.length > 0) {
-            Menu.setApplicationMenu(topMenu)
-        }
-
-        // Another window's setting
-        win.on('close', () => { win = null; });
+            height: h,
+            maxWidth: maxW,
+            maxHeight: maxH
+        })
+        // Look up for the file's pathname
+        let file = join(__dirname, '../' + f)
+        // Another setting for window
         win.loadURL(url.format({
             pathname: file,
             protocol: 'file',
             slashes: true
-        }));
-        win.show();
+        }))
+        // Set application's menus
+        let menuTemplate;
+        if (menus == undefined || menus.length < 0 || menus == null) {
+            return
+        } else {
+            menuTemplate = Menu.buildFromTemplate(menus)
+            Menu.setApplicationMenu(menuTemplate)
+        }
+        // Show & close the app
+        win.on('close', () => { win = null })
+        win.show()
     }
 }

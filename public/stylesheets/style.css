@@ -5,6 +5,10 @@ body {
 	background: #bdbdbd2e;
 }
 
+::-webkit-scrollbar {
+	background-color: #00000030;
+}
+
 .container {
 	margin: 0px 15px 0px 15px;
 }
