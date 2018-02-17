@@ -10,15 +10,27 @@ var mainWin, secondWin;
 const mainMenuTemplate = [{
     label: 'File',
     submenu: [{
-        label: 'Tambahkan Siswa',
-        click() { mainWindow(secondWin, 'index2.html', 400, 500) }
+        label: 'Exit',
+        click() { app.quit(); }  
+    }]
+}, {
+    label: 'Siswa',
+    submenu: [{
+        label: 'Tambahkan Siswa'
+    }, {
+        label: 'Ubah Data Siswa'
     }, {
         label: 'Hapus Siswa'
+    }]
+}, {
+    label: 'Guru',
+    submenu: [{
+        label: 'Tambahkan Guru',
+        click() { mainWindow(secondWin, './sections/index2.html', 400, 500) }
     }, {
-        label: 'Update Data Siswa'
+        label: 'Ubah Data Guru'
     }, {
-        label: 'Exit',
-        click() { app.quit(); }
+        label: 'Hapus Data Guru'
     }]
 }, {
     // Check if the platform is mac (darwin) or something else

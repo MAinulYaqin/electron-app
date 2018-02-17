@@ -39,7 +39,7 @@ module.exports = {
             maxHeight: maxH
         })
         // Look up for the file's pathname
-        let file = join(__dirname, '../sections' + f)
+        let file = join(__dirname, '../sections', f)
         // Another setting for window
         win.loadURL(url.format({
             pathname: file,
