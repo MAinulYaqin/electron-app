@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Tambah Guru</title>
+	<title>Tambah Siswa</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,26 +11,24 @@
 </head>
 
 <body>
-	<form id="tambah-guru">
-		<label for="nama_guru">Nama</label>
-		<input type="text" name="nama_guru" required title="nama">
+	<form id="tambah-siswa">
+		<label for="nama_siswa">Nama Siswa</label>
+		<input type="text" name="nama_siswa" required title="nama" placeholder="Nama Siswa">
+		<br>
+		<label for="kelas">kelas</label>
+		<input type="text" name="kelas" required title="kelas" placeholder="Ex: XI-RPL 1">
+		<br>
 		<label for="kelamin">Jenis Kelamin</label>
 		<select name="kelamin" id="kelamin">
 			<option>L</option>
 			<option>K</option>
 		</select>
 		<br>
-		<label for="ttl">Tempat Tanggal Lahir</label>
-		<input type="text" name="ttl" required title="YYYY-MM-DD">
-		<br>
 		<label for="alamat">Alamat</label>
 		<input type="text" name="alamat" required title="">
 		<br>
-		<label for="mapel">Mata Pelajaran</label>
-		<input type="text" name="mapel" required>
-		<br>
-		<label for="wakil_kls">Wakil Kelas</label>
-		<input type="text" name="wakil_kls" required title="Ex: XI-RPL 1">
+		<label for="ttl">Tempat Tanggal Lahir</label>
+		<input type="text" name="ttl" required title="YYYY-MM-DD" placeholder="YYYY-MM-DD">
 		<button type="submit" id="btn1">Tambahkan</button>
 	</form>
 
@@ -38,51 +36,7 @@
 </body>
 
 <script>
-	// Stolen from https://stackoverflow.com/questions/2276463/how-can-i-get-form-data-with-javascript-jquery
-	function setOrPush(target, val) {
-		var result = val;
-		if (target) {
-			result = [target];
-			result.push(val);
-		}
-		return result;
-	}
-
-	function getFormData(formElement) {
-		var formElements = formElement.elements;
-		var formParams = {};
-		var i = 0;
-		var elem = null;
-
-		for (i = 0; i < formElements.length; i += 1) {
-			elem = formElements[i];
-			switch (elem.type) {
-				case 'submit':
-					break;
-				case 'radio':
-					if (elem.checked) {
-						formParams[elem.name] = elem.value
-					}
-					break;
-				case 'checkbox':
-					if (elem.checked) {
-						formParams[elem.name] = setOrPush(formParams[elem.name], elem.value);
-					}
-					break;
-				default :
-					formParams[elem.name] = setOrPush(formParams[elem.name], elem.value)
-			}
-		}
-
-		return formParams;
-	}
-
-	document.getElementById('btn1').addEventListener('click', function (e) {
-		e.preventDefault();
-		// console.log(document.getElementById('tambah-guru').elements)
-		let params = getFormData(document.getElementById('tambah-guru'));
-		document.getElementById('result').innerHTML = JSON.stringify(params, null, ' ');
-	})
+	require('../../renderer-process/siswa')
 </script>
 
 </html>
