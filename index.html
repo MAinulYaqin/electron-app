@@ -29,15 +29,30 @@
 	</div>
 
 	<div id="container" class="container" style="visibility: hidden !important;">
-		<form action="/" method="post">
-			<button type="submit" id="btn1"> Submit change </button>
-		</form>
+		Siswa
+		<div>
+			<table id="siswa-table">
+			</table>
+		</div>
+
+		Guru
+		<div>
+			<table id="guru-table">
+			</table>
+		</div>
+
+		Mapel
+		<div>
+			<tabel id="mapel-table">
+			</tabel>
+		</div>
 	</div>
 
 	<script>
-		require('./renderer-process/main')
-		require('./renderer-process/guru.js')
 		require('./assets/javascripts/loader')
+		require('./renderer-process/siswa')
+		require('./renderer-process/guru')
+		require('./renderer-process/mapel')
 	</script>
 </body>
 

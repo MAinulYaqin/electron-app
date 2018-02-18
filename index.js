@@ -1,13 +1,14 @@
 var electron = require('electron');
-var {app, BrowserWindow, Menu} = electron
 var express = require('express');
 var mysql = require('mysql');
-var connection = mysql.createConnection()
-var {join} = require('path');
 var url = require('url');
-var config = require('./assets/config');
 
-connection.connect(config.mysql_config);
+var {join} = require('path');
+var {app, BrowserWindow, Menu} = electron
+var config = require('./assets/config');
+var connection = mysql.createConnection(config.mysql_config)
+
+connection.connect(connection);
 
 // Empty variable for windows
 var mainWin;
