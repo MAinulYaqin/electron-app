@@ -25,10 +25,10 @@ const mainMenuTemplate = [{
         click() { mainWindow(tambah, 'sections/siswa/create-siswa.html', 400, 500) }
     }, {
         label: 'Ubah Data Siswa',
-        click() { mainWindow(ubah, 'sections/siswa/create-siswa.html', 400, 500) }
+        click() { mainWindow(ubah, 'sections/siswa/update-siswa.html', 400, 500) }
     }, {
         label: 'Hapus Siswa',
-        click() { mainWindow(hapus, 'sections/siswa/create-siswa.html', 400, 500) }
+        click() { mainWindow(hapus, 'sections/siswa/delete-siswa.html', 400, 500) }
     }]
 }, {
     label: 'Guru',
@@ -40,19 +40,19 @@ const mainMenuTemplate = [{
         click() { mainWindow(ubah, 'sections/guru/update-guru.html', 400, 500) }
     }, {
         label: 'Hapus Data Guru',
-        click() { mainWindow(hapus, 'sections/guru/hapus-guru.html', 400, 500) }        
+        click() { mainWindow(hapus, 'sections/guru/delete-guru.html', 400, 500) }        
     }]
 }, {
     label: 'Mata Pelajaran',
     submenu: [{
         label: 'Tambahkan Mapel',
-        click() { mainWindow(tambah, 'sections/mapel/hapus-mapel.html', 400, 500) }
+        click() { mainWindow(tambah, 'sections/mapel/create-mapel.html', 400, 500) }
     }, {
         label: 'Ubah Mapel',
-        click() { mainWindow(ubah, 'sections/mapel/hapus-mapel.html', 400, 500) }
+        click() { mainWindow(ubah, 'sections/mapel/update-mapel.html', 400, 500) }
     }, {
         label: 'Hapus Mapel',
-        click() { mainWindow(hapus, 'sections/mapel/hapus-mapel.html', 400, 500) }
+        click() { mainWindow(hapus, 'sections/mapel/delete-mapel.html', 400, 500) }
     }]
 }, {
     // Check if the platform is mac (darwin) or something else

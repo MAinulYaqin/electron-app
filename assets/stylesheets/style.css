@@ -5,6 +5,10 @@ body {
 	background: #bdbdbd2e;
 }
 
+#btn1 {
+	float: right !important;
+}
+
 ::-webkit-scrollbar {
 	background-color: #00000030;
 }
@@ -96,16 +100,6 @@ li .navbar-brand {
 .add-on:hover {
 	color: #f2f2f2;
 	transition: color 0.3s
-}
-
-.btn {
-	cursor: pointer;
-	border-radius: 7px;
-	background: transparent;
-}
-
-.btn.btn-submit:hover {
-	background: rgba(21, 101, 192, 0.81)
 }
 
 .row {
