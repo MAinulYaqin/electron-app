@@ -11,7 +11,7 @@ var connection = mysql.createConnection(config.mysql_config)
 connection.connect(connection);
 
 // Empty variable for windows
-var mainWin;
+var mainWin, tambah, ubah, hapus;
 const mainMenuTemplate = [{
     label: 'File',
     submenu: [{
@@ -21,21 +21,38 @@ const mainMenuTemplate = [{
 }, {
     label: 'Siswa',
     submenu: [{
-        label: 'Tambahkan Siswa'
+        label: 'Tambahkan Siswa',
+        click() { mainWindow(tambah, './sections/siswa/create-siswa.html', 400, 500) }
     }, {
-        label: 'Ubah Data Siswa'
+        label: 'Ubah Data Siswa',
+        click() { mainWindow(ubah, './sections/siswa/create-siswa.html', 400, 500) }
     }, {
-        label: 'Hapus Siswa'
+        label: 'Hapus Siswa',
+        click() { mainWindow(hapus, './sections/siswa/create-siswa.html', 400, 500) }
     }]
 }, {
     label: 'Guru',
     submenu: [{
         label: 'Tambahkan Guru',
-        click() { mainWindow(secondWin, './sections/index2.html', 400, 500) }
+        click() { mainWindow(tambah, './sections/guru/create-guru.html', 400, 500) }
     }, {
-        label: 'Ubah Data Guru'
+        label: 'Ubah Data Guru',
+        click() { mainWindow(ubah, './sections/guru/update-guru.html', 400, 500) }
     }, {
-        label: 'Hapus Data Guru'
+        label: 'Hapus Data Guru',
+        click() { mainWindow(hapus, './sections/guru/hapus-guru.html', 400, 500) }        
+    }]
+}, {
+    label: 'Mata Pelajaran',
+    submenu: [{
+        label: 'Tambahkan Mapel',
+        click() { mainWindow(tambah, './sections/mapel/hapus-mapel.html', 400, 500) }
+    }, {
+        label: 'Ubah Mapel',
+        click() { mainWindow(ubah, './sections/mapel/hapus-mapel.html', 400, 500) }
+    }, {
+        label: 'Hapus Mapel',
+        click() { mainWindow(hapus, './sections/mapel/hapus-mapel.html', 400, 500) }
     }]
 }, {
     // Check if the platform is mac (darwin) or something else
@@ -44,6 +61,30 @@ const mainMenuTemplate = [{
         app.quit();
     }
 }]
+
+
+function mainWindow () {
+    // create window
+    mainWin = new BrowserWindow()
+    // Look up for the file's pathname
+    let file = join(__dirname, 'index.html')
+    // Another setting for window
+    mainWin.loadURL(url.format({
+        pathname: file,
+        protocol: 'file',
+        slashes: true
+    }))
+    // Show & close the app
+    let menuTemplate;
+    menuTemplate = Menu.buildFromTemplate(mainMenuTemplate)
+    Menu.setApplicationMenu(menuTemplate)
+
+    mainWin.on('closed', () => { 
+        mainWin = null;
+        connection.end()
+     })
+    mainWin.show()
+}
 
 // Another setting for mac
 if (process.platform == 'darwin') {
@@ -63,29 +104,6 @@ if (config.NODE_ENV !== 'production') {
             role: 'reload'
         }]
     })
-}
-
-function mainWindow () {
-    // create window
-    mainWin = new BrowserWindow()
-    // Look up for the file's pathname
-    let file = join(__dirname, 'index.html')
-    // Another setting for window
-    mainWin.loadURL(url.format({
-        pathname: file,
-        protocol: 'file',
-        slashes: true
-    }))
-    // Show & close the app
-    let menuTemplate;
-    menuTemplate = Menu.buildFromTemplate(mainMenuTemplate)
-        Menu.setApplicationMenu(menuTemplate)
-
-    mainWin.on('closed', () => { 
-        mainWin = null;
-        connection.end()
-     })
-    mainWin.show()
 }
 
 app.on('ready', () => {
