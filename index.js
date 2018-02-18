@@ -22,37 +22,37 @@ const mainMenuTemplate = [{
     label: 'Siswa',
     submenu: [{
         label: 'Tambahkan Siswa',
-        click() { mainWindow(tambah, './sections/siswa/create-siswa.html', 400, 500) }
+        click() { mainWindow(tambah, 'sections/siswa/create-siswa.html', 400, 500) }
     }, {
         label: 'Ubah Data Siswa',
-        click() { mainWindow(ubah, './sections/siswa/create-siswa.html', 400, 500) }
+        click() { mainWindow(ubah, 'sections/siswa/create-siswa.html', 400, 500) }
     }, {
         label: 'Hapus Siswa',
-        click() { mainWindow(hapus, './sections/siswa/create-siswa.html', 400, 500) }
+        click() { mainWindow(hapus, 'sections/siswa/create-siswa.html', 400, 500) }
     }]
 }, {
     label: 'Guru',
     submenu: [{
         label: 'Tambahkan Guru',
-        click() { mainWindow(tambah, './sections/guru/create-guru.html', 400, 500) }
+        click() { mainWindow(tambah, 'sections/guru/create-guru.html', 400, 500) }
     }, {
         label: 'Ubah Data Guru',
-        click() { mainWindow(ubah, './sections/guru/update-guru.html', 400, 500) }
+        click() { mainWindow(ubah, 'sections/guru/update-guru.html', 400, 500) }
     }, {
         label: 'Hapus Data Guru',
-        click() { mainWindow(hapus, './sections/guru/hapus-guru.html', 400, 500) }        
+        click() { mainWindow(hapus, 'sections/guru/hapus-guru.html', 400, 500) }        
     }]
 }, {
     label: 'Mata Pelajaran',
     submenu: [{
         label: 'Tambahkan Mapel',
-        click() { mainWindow(tambah, './sections/mapel/hapus-mapel.html', 400, 500) }
+        click() { mainWindow(tambah, 'sections/mapel/hapus-mapel.html', 400, 500) }
     }, {
         label: 'Ubah Mapel',
-        click() { mainWindow(ubah, './sections/mapel/hapus-mapel.html', 400, 500) }
+        click() { mainWindow(ubah, 'sections/mapel/hapus-mapel.html', 400, 500) }
     }, {
         label: 'Hapus Mapel',
-        click() { mainWindow(hapus, './sections/mapel/hapus-mapel.html', 400, 500) }
+        click() { mainWindow(hapus, 'sections/mapel/hapus-mapel.html', 400, 500) }
     }]
 }, {
     // Check if the platform is mac (darwin) or something else
@@ -63,13 +63,16 @@ const mainMenuTemplate = [{
 }]
 
 
-function mainWindow () {
+function mainWindow (win, f, w, h) {
     // create window
-    mainWin = new BrowserWindow()
+    win = new BrowserWindow({
+        width: w,
+        height: h
+    })
     // Look up for the file's pathname
-    let file = join(__dirname, 'index.html')
+    let file = join(__dirname, f)
     // Another setting for window
-    mainWin.loadURL(url.format({
+    win.loadURL(url.format({
         pathname: file,
         protocol: 'file',
         slashes: true
@@ -79,11 +82,13 @@ function mainWindow () {
     menuTemplate = Menu.buildFromTemplate(mainMenuTemplate)
     Menu.setApplicationMenu(menuTemplate)
 
-    mainWin.on('closed', () => { 
-        mainWin = null;
-        connection.end()
+    win.on('closed', () => { 
+        if (win === mainWin) {
+            connection.end()
+        }
+        win = null;
      })
-    mainWin.show()
+    win.show()
 }
 
 // Another setting for mac
@@ -107,5 +112,5 @@ if (config.NODE_ENV !== 'production') {
 }
 
 app.on('ready', () => {
-    mainWindow()
+    mainWindow(mainWin, 'index.html')
 })
