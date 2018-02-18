@@ -1,12 +1,16 @@
 var electron = require('electron');
+var {app, BrowserWindow, Menu} = electron
+var express = require('express');
+var mysql = require('mysql');
+var connection = mysql.createConnection()
 var {join} = require('path');
 var url = require('url');
-
-var {app, BrowserWindow, Menu} = electron
 var config = require('./assets/config');
-// Empty variable for windows
-var mainWin, secondWin;
 
+connection.connect(config.mysql_config);
+
+// Empty variable for windows
+var mainWin;
 const mainMenuTemplate = [{
     label: 'File',
     submenu: [{
@@ -60,39 +64,29 @@ if (config.NODE_ENV !== 'production') {
     })
 }
 
-function mainWindow (win, f, w, h, maxW, maxH) {
+function mainWindow () {
     // create window
-    win = new BrowserWindow({
-        width: w,
-        height: h,
-        maxWidth: maxW,
-        maxHeight: maxH
-    })
+    mainWin = new BrowserWindow()
     // Look up for the file's pathname
-    let file = join(__dirname, f)
+    let file = join(__dirname, 'index.html')
     // Another setting for window
-    win.loadURL(url.format({
+    mainWin.loadURL(url.format({
         pathname: file,
         protocol: 'file',
         slashes: true
     }))
     // Show & close the app
-    win.on('closed', () => { win = null })
-    win.show()
-}
-
-function setApplicationMenus (menus) {
-    // Set application's menus
     let menuTemplate;
-    if (menus == undefined || menus.length < 0 || menus == null) {
-        return
-    } else {
-        menuTemplate = Menu.buildFromTemplate(menus)
+    menuTemplate = Menu.buildFromTemplate(mainMenuTemplate)
         Menu.setApplicationMenu(menuTemplate)
-    }
+
+    mainWin.on('closed', () => { 
+        mainWin = null;
+        connection.end()
+     })
+    mainWin.show()
 }
 
 app.on('ready', () => {
-    mainWindow(mainWin, 'index.html')
-    setApplicationMenus(mainMenuTemplate)
+    mainWindow()
 })

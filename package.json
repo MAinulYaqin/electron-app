@@ -14,6 +14,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "electron-winstaller": "^2.6.4",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
     "mysql2": "^1.5.1",
     "node-mysql": "^0.4.2",
     "sequelize": "^4.31.2"

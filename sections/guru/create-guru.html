@@ -6,12 +6,12 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="../assets/stylesheets/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" href="../assets/stylesheets/style.css">
+	<link rel="stylesheet" href="../../assets/stylesheets/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="../../assets/stylesheets/style.css">
 </head>
 
 <body>
-	<form action="/" method="post">
+	<form id="tambah-guru">
 		<label for="nama_guru">Nama</label>
 		<input type="text" name="nama_guru" required title="nama">
 		<label for="kelamin">Jenis Kelamin</label>
@@ -30,9 +30,59 @@
 		<input type="text" name="mapel" required>
 		<br>
 		<label for="wakil_kls">Wakil Kelas</label>
-		<input type="text" name="wakil_kls" required>
-		<button type="submit">Tambahkan</button>
+		<input type="text" name="wakil_kls" required title="Ex: XI-RPL 1">
+		<button type="submit" id="btn1">Tambahkan</button>
 	</form>
 </body>
+
+<script>
+	
+
+	// Stolen from https://stackoverflow.com/questions/2276463/how-can-i-get-form-data-with-javascript-jquery
+	function setOrPush(target, val) {
+		var result = val;
+		if (target) {
+			result = [target];
+			result.push(val);
+		}
+		return result;
+	}
+
+	function getFormData(formElement) {
+		var formElements = formElement.elements;
+		var formParams = {};
+		var i = 0;
+		var elem = null;
+
+		for (i = 0; i < formElements.length; i += 1) {
+			elem = formElements[i];
+			switch (elem.type) {
+				case 'submit':
+					break;
+				case 'radio':
+					if (elem.checked) {
+						formParams[elem.name] = elem.value
+					}
+					break;
+				case 'checkbox':
+					if (elem.checked) {
+						formParams[elem.name] = setOrPush(formParams[elem.name], elem.value);
+					}
+					break;
+				default :
+					formParams[elem.name] = setOrPush(formParams[elem.name], elem.value)
+			}
+		}
+
+		return formParams;
+	}
+
+	document.getElementById('btn1').addEventListener('click', function (e) {
+		e.preventDefault();
+		// console.log(document.getElementById('tambah-guru').elements)
+		let params = getFormData(document.getElementById('tambah-guru'));
+		document.getElementById('result').innerHTML = JSON.stringify(params, null, ' ');
+	})
+</script>
 
 </html>
