@@ -83,11 +83,9 @@ function mainWindow (win, f, w, h) {
     Menu.setApplicationMenu(menuTemplate)
 
     win.on('closed', () => { 
-        if (win === mainWin) {
-            connection.end()
-        }
-        win = null;
-     })
+        if (win === mainWin) { connection.end() }
+        win == null;
+    })
     win.show()
 }
 
