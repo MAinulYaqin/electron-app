@@ -63,11 +63,13 @@ const mainMenuTemplate = [{
 }]
 
 
-function mainWindow (win, f, w, h) {
+function mainWindow (win, f, w, h, minW, minH) {
     // create window
     win = new BrowserWindow({
         width: w,
-        height: h
+        height: h,
+        minWidth: minW,
+        minHeight: minH
     })
     // Look up for the file's pathname
     let file = join(__dirname, f)
@@ -110,5 +112,5 @@ if (config.NODE_ENV !== 'production') {
 }
 
 app.on('ready', () => {
-    mainWindow(mainWin, 'index.html')
+    mainWindow(mainWin, 'index.html', 800, 600, 800, 600)
 })

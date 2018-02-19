@@ -6,7 +6,12 @@ yarn-debug.log*
 yarn-error.log*
 
 # style, css
-assets/stylesheets/font-awesome
+assets/stylesheets/bootstrap/
+assets/stylesheets/css/
+assets/plugins/
+assets/javascripts/js/
+assets/fonts/
+assets/img/
 
 # Runtime data
 pids
