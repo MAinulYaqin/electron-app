@@ -8,11 +8,12 @@ var {app, BrowserWindow, Menu} = electron
 var config = require('./assets/config');
 var connection = mysql.createConnection(config.mysql_config)
 
+process.env.NODE_ENV == config.NODE_ENV;
 connection.connect(connection);
 
 // Empty variable for windows
 var mainWin, tambah, ubah, hapus;
-const mainMenuTemplate = [{
+var mainMenuTemplate = [{
     label: 'File',
     submenu: [{
         label: 'Exit',
@@ -79,10 +80,6 @@ function mainWindow (win, f, w, h, minW, minH) {
         protocol: 'file',
         slashes: true
     }))
-    // Show & close the app
-    let menuTemplate;
-    menuTemplate = Menu.buildFromTemplate(mainMenuTemplate)
-    Menu.setApplicationMenu(menuTemplate)
 
     win.on('closed', () => { 
         if (win === mainWin) { connection.end() }
@@ -91,11 +88,20 @@ function mainWindow (win, f, w, h, minW, minH) {
     win.show()
 }
 
+function addTopBar (Menu, array) {
+    // Show & close the app
+    let menuTemplate;
+    menuTemplate = Menu.buildFromTemplate(array)
+    Menu.setApplicationMenu(menuTemplate)
+}
+
 // Another setting for mac
 if (process.platform == 'darwin') {
     mainMenuTemplate.unshift({});
 }
-if (config.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV == 'production') {
+    mainMenuTemplate.pop()
+} else {
     mainMenuTemplate.push({
         label: 'Developer Tools',
         submenu: [{
@@ -113,4 +119,5 @@ if (config.NODE_ENV !== 'production') {
 
 app.on('ready', () => {
     mainWindow(mainWin, 'index.html', 800, 600, 800, 600)
+    addTopBar(Menu, mainMenuTemplate)
 })
