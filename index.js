@@ -94,10 +94,11 @@ function addTopBar (Menu, array) {
     Menu.setApplicationMenu(menuTemplate)
 }
 
-// Another setting for mac
+// Another configuration for mac
 if (process.platform == 'darwin') {
     mainMenuTemplate.unshift({});
 }
+// configuration for development environment
 if (config.node_env == 'development') {
     mainMenuTemplate.push({
         label: 'Developer Tools',

@@ -1,12 +1,14 @@
-"use strict";
+// @ts-check
+
 // This controller i create for *.js inside /public/javascripts
 var electron = require('electron');
-var {BrowserWindow} = electron.remote
+var { BrowserWindow } = electron.remote
+var { Menu } = electron;
 // Built-in module
 var join = require('path').join;
-var url  = require('url');
+var url = require('url');
 
-function required () {
+function required() {
     if (this.target.length <= 0) {
         throw new Error('This parameter is required')
     }
@@ -14,7 +16,7 @@ function required () {
 
 module.exports = {
     /**
-     * @param {Variable} win
+     * @param {any} win
         Empty variable.
         You must declared empty variable to create new window.
         Simply like one empty variable is equal to one new window.
@@ -47,7 +49,18 @@ module.exports = {
             slashes: true
         }))
         // Show & close the app
-        win.on('close', () => { win = null })
+        win.on('close', () => {
+            win = null
+        })
         win.show()
+    },
+    /**
+     * @param {Array} a
+        Given array will be output topbar
+     */
+    addTopBar: function (a) {
+        let menuTemplate;
+        menuTemplate = Menu.buildFromTemplate(a)
+        Menu.setApplicationMenu(menuTemplate)
     }
 }
