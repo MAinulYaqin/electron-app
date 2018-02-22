@@ -8,7 +8,6 @@ var {app, BrowserWindow, Menu} = electron
 var config = require('./assets/config');
 var connection = mysql.createConnection(config.mysql_config)
 
-process.env.NODE_ENV == config.NODE_ENV;
 connection.connect(connection);
 
 // Empty variable for windows
@@ -99,9 +98,7 @@ function addTopBar (Menu, array) {
 if (process.platform == 'darwin') {
     mainMenuTemplate.unshift({});
 }
-if (process.env.NODE_ENV == 'production') {
-    mainMenuTemplate.pop()
-} else {
+if (config.node_env == 'development') {
     mainMenuTemplate.push({
         label: 'Developer Tools',
         submenu: [{
@@ -115,6 +112,8 @@ if (process.env.NODE_ENV == 'production') {
             role: 'reload'
         }]
     })
+} else {
+    mainMenuTemplate.pop()
 }
 
 app.on('ready', () => {
