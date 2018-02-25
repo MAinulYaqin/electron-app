@@ -14,17 +14,11 @@ var mainWin, tambah, ubah, hapus;
 
 function mainWindow(win, f, w, h, minW, minH) {
     // create window
-    mainWin = new BrowserWindow({
+    win = new BrowserWindow({
         width: w,
         height: h,
         minWidth: minW,
         minHeight: minH,
-        parent: mainWin,
-        modal: true
-    })
-
-    mainWin.webContents.session.getBlobData({}, (err, data) => {
-        console.log(data)
     })
 
     // Look up for the file's pathname
@@ -139,7 +133,7 @@ if (config.node_env == 'development') {
         }, {
             label: 'Tambah akun',
             click() {
-                mainWindow(tambah, './sections/akun/create-akun.html', 480, 350)
+                mainWindow(tambah, 'sections/akun/create-akun.html', 480, 350)
             }
         }, {
             label: 'Reload',
@@ -151,6 +145,6 @@ if (config.node_env == 'development') {
 }
 
 app.on('ready', () => {
-    mainWindow(mainWin, './sections/login/login.html', 800, 600, 800, 600)
+    mainWindow(mainWin, 'sections/login/login.html', 800, 600, 800, 600)
     addTopBar(Menu, mainMenuTemplate)
 })

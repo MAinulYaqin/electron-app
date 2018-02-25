@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="../../assets/stylesheets/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../../assets/stylesheets/bootstrap/bootstrap.min.css">
 
     <style>
         body {
@@ -23,7 +23,8 @@
             margin-left: 40%;
         }
 
-        input[type="text"], button {
+        input,
+        button {
             margin-top: 0.5rem;
             box-shadow: 2.5px 3px 1px 0px rgba(0, 0, 0, 0.64);
         }
@@ -33,9 +34,11 @@
 <body>
     <div class="container">
         <div class="form-group">
-            <input type="text" name="username" class="form-control" placeholder="Username">
-            <input type="text" name="password" class="form-control" placeholder="Password">
-            <button id="btn1" class="btn btn-success">Masuk</button>
+            <form id="login">
+                <input type="text" name="username" class="form-control" placeholder="Username">
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                <button id="btn1" class="btn btn-success">Masuk</button>
+            </form>
         </div>
     </div>
 
