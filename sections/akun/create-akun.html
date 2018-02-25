@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Tambah Akun</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../../assets/stylesheets/bootstrap/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: #212529;
+        }
+
+        div, label {
+            color: #fafafa;
+        }
+
+        .container {
+            margin-top: 4rem !important;
+            padding: 2rem !important
+        }
+
+        #btn1 {
+            margin-left: 40%;
+        }
+
+        input,
+        button {
+            margin-top: 0.5rem;
+            box-shadow: 2.5px 3px 1px 0px rgba(0, 0, 0, 0.64);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-group">
+            <form id="tambah-akun">
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                <button type="submit" id="btn1" class="btn btn-success">Tambah</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        require('../../renderer-process/akun')
+    </script>
+</body>
+
+</html>

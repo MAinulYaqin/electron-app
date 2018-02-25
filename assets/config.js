@@ -8,6 +8,6 @@ module.exports = {
         host: 'localhost',
         user: 'root',
         password: 'root',
-        database: 'try2'
+        database: 'sistem_sekolah'
     }
 }

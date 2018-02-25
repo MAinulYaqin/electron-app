@@ -2,10 +2,11 @@
 
 var mysql = require('mysql');
 var config = require('../assets/config');
+var md5 = require('md5');
 var connection = mysql.createConnection(config.mysql_config);
 
 // Stolen from https://stackoverflow.com/questions/2276463/how-can-i-get-form-data-with-javascript-jquery
-function setOrPush (target, val) {
+function setOrPush(target, val) {
     var result = val;
     if (target) {
         result = [target];
@@ -14,7 +15,7 @@ function setOrPush (target, val) {
     return result;
 }
 // Get form data
-function getFormData (formElement) {
+function getFormData(formElement) {
     var formElements = formElement.elements;
     var formParams = {};
     var i = 0;
@@ -25,9 +26,12 @@ function getFormData (formElement) {
         switch (elem.type) {
             case 'submit':
                 break;
+            case 'password':
+                formParams[elem.name] = setOrPush(formParams[elem.name], md5(elem.value));
+                break;
             case 'radio':
                 if (elem.checked) {
-                    formParams[elem.name] = elem.value
+                    formParams[elem.name] = elem.value;
                 }
                 break;
             case 'checkbox':
@@ -36,7 +40,8 @@ function getFormData (formElement) {
                 }
                 break;
             default:
-                formParams[elem.name] = setOrPush(formParams[elem.name], elem.value)
+                formParams[elem.name] = setOrPush(formParams[elem.name], elem.value);
+                break;
         }
     }
 
@@ -50,20 +55,20 @@ module.exports = {
      * @param {String} g
         table's name
      */
-    insert : function (f, g) {
+    insert: function (f, g) {
         // Get form's id
         let params = getFormData(document.getElementById(f));
         // Change data to string and display it
         let data = JSON.stringify(params, null, '');
-        document.getElementById('result').innerHTML = data;
+        // document.getElementById('result').innerHTML = data;
         // Check the data | development
         console.log(JSON.parse(data))
-        
+
         // Insert into database (query), then parsing the data back to JSON
         // after it, check affected rows with console.log
         connection.query(`INSERT INTO ${g} SET ?`, JSON.parse(data), function (err, result, fields) {
             if (err) throw Error;
-
+            
             console.log(result.affectedRows);
         });
     }

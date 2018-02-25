@@ -1,10 +1,9 @@
 var electron = require('electron');
-var express = require('express');
 var mysql = require('mysql');
 var url = require('url');
 
-var {join} = require('path');
-var {app, BrowserWindow, Menu} = electron
+var { join } = require('path');
+var { app, BrowserWindow, Menu } = electron
 var config = require('./assets/config');
 var connection = mysql.createConnection(config.mysql_config)
 
@@ -12,65 +11,22 @@ connection.connect(connection);
 
 // Empty variable for windows
 var mainWin, tambah, ubah, hapus;
-var mainMenuTemplate = [{
-    label: 'File',
-    submenu: [{
-        label: 'Exit',
-        click() { app.quit(); }  
-    }]
-}, {
-    label: 'Siswa',
-    submenu: [{
-        label: 'Tambahkan Siswa',
-        click() { mainWindow(tambah, 'sections/siswa/create-siswa.html', 400, 500) }
-    }, {
-        label: 'Ubah Data Siswa',
-        click() { mainWindow(ubah, 'sections/siswa/update-siswa.html', 400, 500) }
-    }, {
-        label: 'Hapus Siswa',
-        click() { mainWindow(hapus, 'sections/siswa/delete-siswa.html', 400, 500) }
-    }]
-}, {
-    label: 'Guru',
-    submenu: [{
-        label: 'Tambahkan Guru',
-        click() { mainWindow(tambah, 'sections/guru/create-guru.html', 400, 500) }
-    }, {
-        label: 'Ubah Data Guru',
-        click() { mainWindow(ubah, 'sections/guru/update-guru.html', 400, 500) }
-    }, {
-        label: 'Hapus Data Guru',
-        click() { mainWindow(hapus, 'sections/guru/delete-guru.html', 400, 500) }        
-    }]
-}, {
-    label: 'Mata Pelajaran',
-    submenu: [{
-        label: 'Tambahkan Mapel',
-        click() { mainWindow(tambah, 'sections/mapel/create-mapel.html', 400, 500) }
-    }, {
-        label: 'Ubah Mapel',
-        click() { mainWindow(ubah, 'sections/mapel/update-mapel.html', 400, 500) }
-    }, {
-        label: 'Hapus Mapel',
-        click() { mainWindow(hapus, 'sections/mapel/delete-mapel.html', 400, 500) }
-    }]
-}, {
-    // Check if the platform is mac (darwin) or something else
-    accelerator: config.close_app,
-    click() {
-        app.quit();
-    }
-}]
 
-
-function mainWindow (win, f, w, h, minW, minH) {
+function mainWindow(win, f, w, h, minW, minH) {
     // create window
-    win = new BrowserWindow({
+    mainWin = new BrowserWindow({
         width: w,
         height: h,
         minWidth: minW,
-        minHeight: minH
+        minHeight: minH,
+        parent: mainWin,
+        modal: true
     })
+
+    mainWin.webContents.session.getBlobData({}, (err, data) => {
+        console.log(data)
+    })
+
     // Look up for the file's pathname
     let file = join(__dirname, f)
     // Another setting for window
@@ -80,19 +36,91 @@ function mainWindow (win, f, w, h, minW, minH) {
         slashes: true
     }))
 
-    win.on('closed', () => { 
-        if (win === mainWin) { connection.end() }
+    win.on('closed', () => {
+        if (win === mainWin) {
+            connection.end()
+        }
         win == null;
     })
     win.show()
 }
 
-function addTopBar (Menu, array) {
+function addTopBar(Menu, array) {
     // Show & close the app
     let menuTemplate;
     menuTemplate = Menu.buildFromTemplate(array)
     Menu.setApplicationMenu(menuTemplate)
 }
+
+var mainMenuTemplate = [{
+    label: 'File',
+    submenu: [{
+        label: 'Exit',
+        click() {
+            app.quit();
+        }
+    }]
+}, {
+    label: 'Siswa',
+    submenu: [{
+        label: 'Tambahkan Siswa',
+        click() {
+            mainWindow(tambah, 'sections/siswa/create-siswa.html', 480, 560)
+        }
+    }, {
+        label: 'Ubah Data Siswa',
+        click() {
+            mainWindow(ubah, 'sections/siswa/update-siswa.html', 480, 560)
+        }
+    }, {
+        label: 'Hapus Siswa',
+        click() {
+            mainWindow(hapus, 'sections/siswa/delete-siswa.html', 480, 560)
+        }
+    }]
+}, {
+    label: 'Guru',
+    submenu: [{
+        label: 'Tambahkan Guru',
+        click() {
+            mainWindow(tambah, 'sections/guru/create-guru.html', 480, 560)
+        }
+    }, {
+        label: 'Ubah Data Guru',
+        click() {
+            mainWindow(ubah, 'sections/guru/update-guru.html', 480, 560)
+        }
+    }, {
+        label: 'Hapus Data Guru',
+        click() {
+            mainWindow(hapus, 'sections/guru/delete-guru.html', 480, 560)
+        }
+    }]
+}, {
+    label: 'Mata Pelajaran',
+    submenu: [{
+        label: 'Tambahkan Mapel',
+        click() {
+            mainWindow(tambah, 'sections/mapel/create-mapel.html', 480, 560)
+        }
+    }, {
+        label: 'Ubah Mapel',
+        click() {
+            mainWindow(ubah, 'sections/mapel/update-mapel.html', 480, 560)
+        }
+    }, {
+        label: 'Hapus Mapel',
+        click() {
+            mainWindow(hapus, 'sections/mapel/delete-mapel.html', 480, 560)
+        }
+    }]
+}, {
+    // Check if the platform is mac (darwin) or something else
+    accelerator: config.close_app,
+    click() {
+        app.quit();
+    }
+}]
 
 // Another configuration for mac
 if (process.platform == 'darwin') {
@@ -109,6 +137,11 @@ if (config.node_env == 'development') {
                 focusedWindow.toggleDevTools();
             }
         }, {
+            label: 'Tambah akun',
+            click() {
+                mainWindow(tambah, './sections/akun/create-akun.html', 480, 350)
+            }
+        }, {
             label: 'Reload',
             role: 'reload'
         }]
@@ -118,6 +151,6 @@ if (config.node_env == 'development') {
 }
 
 app.on('ready', () => {
-    mainWindow(mainWin, 'index.html', 800, 600, 800, 600)
+    mainWindow(mainWin, './sections/login/login.html', 800, 600, 800, 600)
     addTopBar(Menu, mainMenuTemplate)
 })

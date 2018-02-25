@@ -2,17 +2,23 @@
 
 // This controller i create for *.js inside /public/javascripts
 var electron = require('electron');
-var { BrowserWindow } = electron.remote
-var { Menu } = electron;
+var { BrowserWindow, Menu } = electron.remote || electron
 // Built-in module
 var join = require('path').join;
 var url = require('url');
 
 function required() {
-    if (this.target.length <= 0) {
-        throw new Error('This parameter is required')
-    }
+    throw new Error('This parameter is required')
 }
+
+var window = new BrowserWindow({
+    width: 480,
+    height: 560,
+    maxWidth: 480,
+    maxHeight: 560,
+    minWidth: 480,
+    minHeight: 560 
+})
 
 module.exports = {
     /**
@@ -22,24 +28,10 @@ module.exports = {
         Simply like one empty variable is equal to one new window.
      * @param {String} f
         File's name.
-         + it must be on the root level
-     * @param {Number} w
-        Window's width :: not required ::
-     * @param {Number} h
-        Window's height :: not required ::
-     * @param {Number} maxW
-        Max width of the window :: not required ::
-     * @param {Number} maxH
-        max Height of the window :: not required ::
+        it must be on the root level
      */
-    showWindow: (win, f, w, h, maxW, maxH, menus) => {
+    showWindow: (win = window, f, menus) => {
         // create window
-        win = new BrowserWindow({
-            width: w,
-            height: h,
-            maxWidth: maxW,
-            maxHeight: maxH
-        })
         // Look up for the file's pathname
         let file = join(__dirname, '../sections', f)
         // Another setting for window
