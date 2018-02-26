@@ -53,7 +53,7 @@ document.getElementById('btn1').addEventListener('click', function (e) {
     e.preventDefault();
 
     let data = getFormData(form);
-    connection.query(`SELECT id FROM akun_guru WHERE username=${JSON.stringify(data.username)} and password=${JSON.stringify(data.password)}`, function (err, result, fields) {
+    connection.query(`SELECT id FROM master_admin WHERE username=${JSON.stringify(data.username)} and password=${JSON.stringify(data.password)}`, function (err, result, fields) {
         if (err) throw new Error
 
         console.log(result)

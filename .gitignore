@@ -5,8 +5,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# config
+assets/config.js
+
 # style, css
-assets/stylesheets/bootstrap/
 assets/stylesheets/css/
 assets/plugins/
 assets/javascripts/js/

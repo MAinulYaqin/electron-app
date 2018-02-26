@@ -7,7 +7,7 @@ module.exports = {
     mysql_config: {
         host: 'localhost',
         user: 'root',
-        password: 'root',
+        password: '',
         database: 'sistem_sekolah'
     }
 }
