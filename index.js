@@ -1,50 +1,9 @@
-var electron = require('electron');
-var mysql = require('mysql');
-var url = require('url');
-
-var { join } = require('path');
-var { app, BrowserWindow, Menu } = electron
+var electron, { app } = require('electron');
+var { showWindow, addTopBar } = require('./controllers/window');
 var config = require('./assets/config');
-var connection = mysql.createConnection(config.mysql_config)
-
-connection.connect(connection);
 
 // Empty variable for windows
 var mainWin, tambah, ubah, hapus;
-
-function mainWindow(win, f, w, h, minW, minH) {
-    // create window
-    win = new BrowserWindow({
-        width: w,
-        height: h,
-        minWidth: minW,
-        minHeight: minH,
-    })
-
-    // Look up for the file's pathname
-    let file = join(__dirname, f)
-    // Another setting for window
-    win.loadURL(url.format({
-        pathname: file,
-        protocol: 'file',
-        slashes: true
-    }))
-
-    win.on('closed', () => {
-        if (win === mainWin) {
-            connection.end()
-        }
-        win == null;
-    })
-    win.show()
-}
-
-function addTopBar(Menu, array) {
-    // Show & close the app
-    let menuTemplate;
-    menuTemplate = Menu.buildFromTemplate(array)
-    Menu.setApplicationMenu(menuTemplate)
-}
 
 var mainMenuTemplate = [{
     label: 'File',
@@ -59,17 +18,17 @@ var mainMenuTemplate = [{
     submenu: [{
         label: 'Tambahkan Siswa',
         click() {
-            mainWindow(tambah, 'sections/siswa/create-siswa.html', 480, 560)
+            showWindow(tambah, 'sections/siswa/create-siswa.html', 480, 560)
         }
     }, {
         label: 'Ubah Data Siswa',
         click() {
-            mainWindow(ubah, 'sections/siswa/update-siswa.html', 480, 560)
+            showWindow(ubah, 'sections/siswa/update-siswa.html', 480, 560)
         }
     }, {
         label: 'Hapus Siswa',
         click() {
-            mainWindow(hapus, 'sections/siswa/delete-siswa.html', 480, 560)
+            showWindow(hapus, 'sections/siswa/delete-siswa.html', 480, 560)
         }
     }]
 }, {
@@ -77,17 +36,17 @@ var mainMenuTemplate = [{
     submenu: [{
         label: 'Tambahkan Guru',
         click() {
-            mainWindow(tambah, 'sections/guru/create-guru.html', 480, 560)
+            showWindow(tambah, 'sections/guru/create-guru.html', 480, 560)
         }
     }, {
         label: 'Ubah Data Guru',
         click() {
-            mainWindow(ubah, 'sections/guru/update-guru.html', 480, 560)
+            showWindow(ubah, 'sections/guru/update-guru.html', 480, 560)
         }
     }, {
         label: 'Hapus Data Guru',
         click() {
-            mainWindow(hapus, 'sections/guru/delete-guru.html', 480, 560)
+            showWindow(hapus, 'sections/guru/delete-guru.html', 480, 560)
         }
     }]
 }, {
@@ -95,17 +54,17 @@ var mainMenuTemplate = [{
     submenu: [{
         label: 'Tambahkan Mapel',
         click() {
-            mainWindow(tambah, 'sections/mapel/create-mapel.html', 480, 560)
+            showWindow(tambah, 'sections/mapel/create-mapel.html', 480, 560)
         }
     }, {
         label: 'Ubah Mapel',
         click() {
-            mainWindow(ubah, 'sections/mapel/update-mapel.html', 480, 560)
+            showWindow(ubah, 'sections/mapel/update-mapel.html', 480, 560)
         }
     }, {
         label: 'Hapus Mapel',
         click() {
-            mainWindow(hapus, 'sections/mapel/delete-mapel.html', 480, 560)
+            showWindow(hapus, 'sections/mapel/delete-mapel.html', 480, 560)
         }
     }]
 }, {
@@ -133,7 +92,7 @@ if (config.node_env == 'development') {
         }, {
             label: 'Tambah akun',
             click() {
-                mainWindow(tambah, 'sections/akun/create-akun.html', 480, 350)
+                showWindow(tambah, 'sections/akun/create-akun.html', 480, 350)
             }
         }, {
             label: 'Reload',
@@ -145,6 +104,6 @@ if (config.node_env == 'development') {
 }
 
 app.on('ready', () => {
-    mainWindow(mainWin, 'sections/login/login.html', 800, 600, 800, 600)
-    addTopBar(Menu, mainMenuTemplate)
+    showWindow(mainWin, 'sections/login/login.html', 800, 600, 800, 600)
+    addTopBar(mainMenuTemplate)
 })

@@ -7,19 +7,13 @@ var { BrowserWindow, Menu } = electron.remote || electron
 var join = require('path').join;
 var url = require('url');
 
-function required() {
-    throw new Error('This parameter is required')
-}
+var mysql = require('mysql')
+var config = require('../assets/config');
+var connection = mysql.createConnection(config.mysql_config)
 
-var window = new BrowserWindow({
-    width: 480,
-    height: 560,
-    maxWidth: 480,
-    maxHeight: 560,
-    minWidth: 480,
-    minHeight: 560 
-})
+connection.connect(connection);
 
+var mainWin;
 module.exports = {
     /**
      * @param {any} win
@@ -30,19 +24,29 @@ module.exports = {
         File's name.
         it must be on the root level
      */
-    showWindow: (win = window, f, menus) => {
+    showWindow: (win, f, w, h, minW, minH) => {
         // create window
+        win = new BrowserWindow({
+            width: w,
+            height: h,
+            minWidth: minW,
+            minHeight: minH,
+        })
+
         // Look up for the file's pathname
-        let file = join(__dirname, '../sections', f)
+        let file = join(__dirname, '../' ,f)
         // Another setting for window
         win.loadURL(url.format({
             pathname: file,
             protocol: 'file',
             slashes: true
         }))
-        // Show & close the app
-        win.on('close', () => {
-            win = null
+
+        win.on('closed', () => {
+            if (win === mainWin) {
+                connection.end()
+            }
+            win == null;
         })
         win.show()
     },
