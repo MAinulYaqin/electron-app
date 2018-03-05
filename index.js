@@ -1,4 +1,4 @@
-var electron, { app } = require('electron');
+var electron, { app, ipcMain } = require('electron');
 var { showWindow, addTopBar } = require('./controllers/window');
 var config = require('./assets/config');
 
@@ -102,6 +102,16 @@ if (config.node_env == 'development') {
 } else {
     mainMenuTemplate.pop()
 }
+
+var argument;
+ipcMain.on('return-value', function (e, arg) {
+    argument = arg
+})
+
+ipcMain.on('pesan', function (e, arg) {
+    console.log(arg) // will return ping
+    e.sender.send('reply-pesan', argument)
+})
 
 app.on('ready', () => {
     showWindow(mainWin, 'sections/login/login.html', 800, 600, 800, 600)

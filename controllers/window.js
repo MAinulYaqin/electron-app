@@ -1,5 +1,6 @@
 // @ts-check
 
+
 // This controller i create for *.js inside /public/javascripts
 var electron = require('electron');
 var { BrowserWindow, Menu } = electron.remote || electron
@@ -24,7 +25,7 @@ module.exports = {
         File's name.
         it must be on the root level
      */
-    showWindow: (win, f, w, h, minW, minH) => {
+    showWindow: function (win, f, w, h, minW, minH) {
         // create window
         win = new BrowserWindow({
             width: w,
@@ -42,11 +43,14 @@ module.exports = {
             slashes: true
         }))
 
-        win.on('closed', () => {
+        win.on('close', () => {
             if (win === mainWin) {
                 connection.end()
+                console.log(true)
             }
-            win == null;
+            setTimeout(() => {
+                win == null;
+            }, 2000);
         })
         win.show()
     },
@@ -58,5 +62,34 @@ module.exports = {
         let menuTemplate;
         menuTemplate = Menu.buildFromTemplate(a)
         Menu.setApplicationMenu(menuTemplate)
+    },
+    singleData : (win, f, w, h, minW, minH) => {
+         // create window
+         win = new BrowserWindow({
+            width: w,
+            height: h,
+            minWidth: minW,
+            minHeight: minH,
+        })
+
+        // Look up for the file's pathname
+        let file = join(__dirname, '../' ,f)
+        // Another setting for window
+        win.loadURL(url.format({
+            pathname: file,
+            protocol: 'file',
+            slashes: true
+        }))
+
+        win.on('close', () => {
+            if (win === mainWin) {
+                connection.end()
+                console.log(true)
+            }
+            setTimeout(() => {
+                win == null;
+            }, 2000);
+        })
+        win.show()
     }
 }

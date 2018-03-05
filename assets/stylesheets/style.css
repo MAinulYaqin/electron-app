@@ -9,8 +9,20 @@ body {
 	float: right !important;
 }
 
+::scrollbar {
+    width: 5px;
+}
+
 ::-webkit-scrollbar {
-	background-color: #00000030;
+    width: 5px;
+}
+
+::scrollbar-thumb {
+    background: royalblue;    
+}
+
+::-webkit-scrollbar-thumb {
+    background: royalblue;
 }
 
 .container {
@@ -100,16 +112,6 @@ li .navbar-brand {
 .add-on:hover {
 	color: #f2f2f2;
 	transition: color 0.3s
-}
-
-.row {
-	display: inline-block;
-	margin: 30px 15px 0px 15px;
-	transition: all 0.2s;
-}
-
-.row::first-child() {
-	margin: 0px 0px 0px 15px;
 }
 
 /*Card*/

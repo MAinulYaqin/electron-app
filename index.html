@@ -12,12 +12,8 @@
 	<link rel="stylesheet" href="assets/stylesheets/style.css">
 	<style>
 		body {
-			background: #212529;
-		}
-
-		div,
-		label {
-			color: #fafafa;
+			/* background: #212529; */
+			background: #fafafa;
 		}
 
 		td {
@@ -76,42 +72,7 @@
 	<script src="./assets/javascripts/dataTabels/jquery.dataTables.min.js"></script>
 	<script src="./assets/javascripts/dataTabels/dataTables.bootstrap4.min.js"></script>
 	<script>
-		var mysql = require('mysql');
-		var config = require('./assets/config');
-		var connection = mysql.createConnection(config.mysql_config)
-
-		// Show
-		connection.query("SELECT * FROM tabel_guru", function (err, result) {
-			if (err) throw Error
-
-			var data = []
-			var tr;
-
-			Array.prototype.forEach.call(result, function (e) {
-				return data.push(e)
-			})
-
-			for (var i = 0; i < data.length; i++) {
-				tr = $('<tr/>');
-
-				// tr.append("<td>" + data[i].Id + "</td>");
-				tr.append("<td>" + data[i].No + "</td>");
-				tr.append("<td>" + data[i].Nama + "</td>");
-				tr.append("<td>" + data[i].JK + "</td>");
-				tr.append("<td>" + data[i].Status_Kepegawaian + "</td>");
-				tr.append("<td>" + data[i].Jenis_PTK + "</td>");
-				$('#guru-table').append(tr);
-
-				// console.log(typeof data[i].JK)
-			}
-
-			$(document).ready(function () {
-				$('#guru-table').DataTable()
-			})
-		})
-	</script>
-	<script>
-		require('./assets/javascripts/loader')
+		require('./assets/javascripts/main')
 	</script>
 </body>
 
