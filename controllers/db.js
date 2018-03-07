@@ -3,7 +3,7 @@
 var mysql = require('mysql');
 var config = require('../assets/config');
 var md5 = require('md5');
-var connection = mysql.createConnection(config.mysql_config);
+var conn = mysql.createConnection(config.mysql_config);
 var { getFormData } = require('../assets/getFormData');
 
 module.exports = {
@@ -12,28 +12,35 @@ module.exports = {
         table's name you want to show
      */
     showAll: function (db) {
-        connection.query(`SELECT * FROM ${db}`, function (err, result) {
+        conn.query(`SELECT * FROM ${db}`, function (err, result) {
             if (err) throw Error;
 
             console.log(result)
         })
     },
     /**
-     * @param {String} db
-       table's name you want to show
+     * @param {String} f
+       Search data use Nama
+     * @param {Object} d
+       DOM classname. The data will be showed on div
+     * @example
+       <div class="data" data="Nama"> Showing table's Nama </div>
+       <div class="data" data="JK"> Showing table's JK </div>
+       <div class="data" data="Tempat_lahir"> Showing table's Tempat_lahir </div>
      */
-    single: function (db) {
+    single: function (f, d) {
         var id;
-        document.getElementById('someButton').addEventListener('click', function (e) {
-            e.preventDefault();
-
-            console.log(this.id);
-            id = this.id;
-        });
-        connection.query(`SELECT * FROM ${db} WHERE id= ${id}`, function (err, result) {
-            if (err) throw Error;
-
-            
+        conn.query(`SELECT * FROM tabel_guru WHERE Nama=${JSON.stringify(f)}`, (err, result) => {
+            if (err) throw Error
+    
+            let data = [];
+            Array.prototype.forEach.call(result, (e) => {
+                data.push(e)
+            })
+    
+            Array.prototype.forEach.call(d, (e) => {
+                e.innerHTML = data[0][e.getAttribute('data')]
+            })
         })
     },
     /**
@@ -53,7 +60,7 @@ module.exports = {
 
         // Insert into database (query), then parsing the data back to JSON
         // after it, check affected rows with console.log
-        connection.query(`INSERT INTO ${g} SET ?`, JSON.parse(data), function (err, result, fields) {
+        conn.query(`INSERT INTO ${g} SET ?`, JSON.parse(data), function (err, result, fields) {
             if (err) throw Error;
 
             console.log(result.affectedRows);
@@ -61,7 +68,7 @@ module.exports = {
     },
     delete: function (f, g) {
         var data = JSON.parse(f)
-        connection.query(`DELETE FROM ${g} SET ?`, f, (err, result) => {
+        conn.query(`DELETE FROM ${g} SET ?`, f, (err, result) => {
             if (err) throw Error;
 
             console.log(result.affectedRows);
@@ -71,7 +78,7 @@ module.exports = {
     },
     update: function (f, g) {
         var data = JSON.parse(f);
-        connection.query(`UPDATE ${g} SET ?`, data, (err, result) => {
+        conn.query(`UPDATE ${g} SET ?`, data, (err, result) => {
             if (err) throw Error;
 
             console.log('affected Rows', result.affectedRows);
