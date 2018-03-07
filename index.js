@@ -4,7 +4,6 @@ var config = require('./assets/config');
 
 // Empty variable for windows
 var mainWin, tambah, ubah, hapus;
-
 var mainMenuTemplate = [{
     label: 'File',
     submenu: [{
@@ -75,6 +74,16 @@ var mainMenuTemplate = [{
     }
 }]
 
+var argument;
+ipcMain.on('return-value', function (e, arg) {
+    argument = arg
+})
+
+ipcMain.on('pesan', function (e, arg) {
+    console.log(arg) // will return ping
+    e.sender.send('reply-pesan', argument)
+})
+
 // Another configuration for mac
 if (process.platform == 'darwin') {
     mainMenuTemplate.unshift({});
@@ -102,16 +111,6 @@ if (config.node_env == 'development') {
 } else {
     mainMenuTemplate.pop()
 }
-
-var argument;
-ipcMain.on('return-value', function (e, arg) {
-    argument = arg
-})
-
-ipcMain.on('pesan', function (e, arg) {
-    console.log(arg) // will return ping
-    e.sender.send('reply-pesan', argument)
-})
 
 app.on('ready', () => {
     showWindow(mainWin, 'sections/login/login.html', 800, 600, 800, 600)

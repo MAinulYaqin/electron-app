@@ -20,8 +20,6 @@ document.getElementById('btn1').addEventListener('click', function (e) {
             console.log(e.id)
         })
 
-        setTimeout(() => {
-            document.location.href = join(__dirname, '../index.html');
-        }, 2000);
+        document.location.href = join(__dirname, '../index.html');
     })
 })

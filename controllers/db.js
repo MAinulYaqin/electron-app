@@ -33,8 +33,7 @@ module.exports = {
         connection.query(`SELECT * FROM ${db} WHERE id= ${id}`, function (err, result) {
             if (err) throw Error;
 
-            console.log(result);
-            console.log('=======================');
+            
         })
     },
     /**
