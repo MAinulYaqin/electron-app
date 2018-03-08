@@ -37,10 +37,12 @@ module.exports = {
             Array.prototype.forEach.call(result, (e) => {
                 data.push(e)
             })
-    
+
             Array.prototype.forEach.call(d, (e) => {
                 e.innerHTML = data[0][e.getAttribute('data')]
             })
+            
+            d[1].textContent === 'L' ? d[1].innerHTML = 'Laki-laki' : d[1].innerHTML = 'Perempuan'
         })
     },
     /**
