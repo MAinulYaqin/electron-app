@@ -42,6 +42,12 @@ connection.query("SELECT * FROM tabel_guru", function (err, result) {
     }
 
     let f = document.getElementsByClassName('singleData')
+    let l = document.getElementById('logout-btn')
+    l.addEventListener('click', function (e) {
+        e.preventDefault()
+
+        document.location.href = './sections/login/login.html'
+    })
 
     Array.prototype.forEach.call(f, (e) => {
         e.addEventListener('click', () => {
