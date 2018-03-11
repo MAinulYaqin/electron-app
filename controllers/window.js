@@ -82,13 +82,7 @@ module.exports = {
         }))
 
         win.on('close', () => {
-            if (win === mainWin) {
-                connection.end()
-                console.log(true)
-            }
-            setTimeout(() => {
-                win == null;
-            }, 2000);
+            win == null;
         })
         win.show()
     }

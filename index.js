@@ -113,6 +113,6 @@ if (config.node_env == 'development') {
 }
 
 app.on('ready', () => {
-    showWindow(mainWin, 'sections/login/login.html', 800, 600, 800, 600)
+    showWindow(mainWin, 'sections/login/login.html', 1250, 666, 800, 600)
     addTopBar(mainMenuTemplate)
 })
