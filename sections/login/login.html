@@ -25,39 +25,93 @@
 </head>
 
 <body>
-	<div style="margin-top: 13rem; padding: 30px">
-		<div class="panel">
-			<div class="panel-heading">
-				<h3 class="panel-title">Login</h3>
+	<div id="container" class="cls-container">
+
+		<!-- BACKGROUND IMAGE -->
+		<!--===================================================-->
+		<div id="bg-overlay" class="bg-img img-balloon"></div>
+
+
+		<!-- HEADER -->
+		<!--===================================================-->
+		<div class="cls-header cls-header-lg">
+			<div class="cls-brand">
+				<div class="box-inline" style="cursor: default;">
+					<!-- <img alt="Nifty Admin" src="img/logo.png" class="brand-icon"> -->
+					<span class="brand-title">Nifty
+						<span class="text-thin">Admin</span>
+					</span>
+				</div>
 			</div>
-
-			<!--Horizontal Form-->
-			<!--===================================================-->
-			<form id="form-login" class="form-horizontal">
-				<div class="panel-body">
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="demo-hor-inputemail">Username</label>
-						<div class="col-sm-9">
-							<input type="email" name="username" placeholder="Username" id="demo-hor-inputemail" class="form-control">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label" for="demo-hor-inputpass">Password</label>
-						<div class="col-sm-9">
-							<input type="password" name="password" placeholder="Password" id="demo-hor-inputpass" class="form-control">
-						</div>
-					</div>
-				</div>
-				<div class="panel-footer text-right">
-					<button id="btn1" class="btn btn-info" type="submit">Sign in</button>
-				</div>
-			</form>
-
-			<!--===================================================-->
-			<!--End Horizontal Form-->
-
 		</div>
+		<!--===================================================-->
+
+
+		<!-- LOGIN FORM -->
+		<!--===================================================-->
+		<div class="cls-content" style="margin-top: 2rem;">
+			<div class="cls-content-sm panel">
+				<div class="panel-body">
+					<p class="pad-btm">Sign In to your account</p>
+					<form id="form-login">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-user"></i>
+								</div>
+								<input type="text" name="username" class="form-control" placeholder="Username">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-asterisk"></i>
+								</div>
+								<input type="password" name="password" class="form-control" placeholder="Password">
+							</div>
+						</div>
+						<div class="row">
+							<!-- <div class="col-xs-8"></div> -->
+							<div class="col-xs-12">
+								<div class="form-group text-right">
+									<button id="btn1" class="btn btn-success text-uppercase" type="submit">Login</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--===================================================-->
+
+
+		<!-- DEMO PURPOSE ONLY -->
+		<!--===================================================-->
+		<div class="demo-bg">
+			<div id="demo-bg-list">
+				<div class="demo-loading">
+					<i class="fa fa-refresh"></i>
+				</div>
+				<!-- <img class="demo-chg-bg bg-trans" src="../../assets/img/bg-img/thumbs/bg-trns.jpg" alt="Background Image"> -->
+				<img class="demo-chg-bg" src="../../assets/img/bg-img/thumbs/bg-img-1.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="../../assets/img/bg-img/thumbs/bg-img-2.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="../../assets/img/bg-img/thumbs/bg-img-3.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="../../assets/img/bg-img/thumbs/bg-img-4.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="../../assets/img/bg-img/thumbs/bg-img-5.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="../../assets/img/bg-img/thumbs/bg-img-6.jpg" alt="Background Image">
+				<img class="demo-chg-bg" src="../../assets/img/bg-img/thumbs/bg-img-7.jpg" alt="Background Image">
+			</div>
+		</div>
+		<!--===================================================-->
+
+
+
 	</div>
+	<script>
+		window.$ = window.jQuery = require('../../assets/javascripts/js/jquery-2.2.1.min')
+	</script>
+	<script src="../../assets/javascripts/js/demo/bg-images.js"></script>
+	<script src="../../assets/plugins/fast-click/fastclick.min.js"></script>
 	<script>
 		require('../../renderer-process/login')
 	</script>

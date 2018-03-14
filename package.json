@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
+    "install": "node ./scripts/installer",
     "migrate": "node migrate/init.js",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . smekda-pro --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/icons.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Smekda Pro\"",
+    "package-win": "electron-packager . smekda-pro --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/icons.ico --prune=true --out=../release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Smekda Pro\"",
     "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/icons.ico --prune=true --out=release-builds"
   },
   "author": "AinulBedjo",
@@ -17,6 +18,7 @@
     "axios": "^0.17.1",
     "concurrently": "^3.5.1",
     "electron-json-storage": "^4.0.2",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-winstaller": "^2.6.4",
     "md5": "^2.2.1",
     "mysql": "^2.15.0"
