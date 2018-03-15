@@ -1,14 +1,21 @@
 var container = document.getElementById('container')
+var usernameProfile = document.getElementById('username-profile')
 var { singleData } = require('../controllers/window')
-var electron, { ipcRenderer } = require('electron')
+var elec = require('electron')
 
-var mysql = require('mysql');
-var config = require('../assets/config');
+var mysql = require('mysql')
+var config = require('../assets/config')
 var connection = mysql.createConnection(config.mysql_config)
 
 
-var win, unique;
+elec.ipcRenderer.send('username-renderer', '')
+elec.ipcRenderer.on('send-data', function (err, arg) {
+    console.log(arg)
+    usernameProfile.textContent = arg
+})
+
 // Show
+var win, unique;
 connection.query("SELECT * FROM tabel_guru", function (err, result) {
     if (err) throw Error
 
@@ -18,6 +25,8 @@ connection.query("SELECT * FROM tabel_guru", function (err, result) {
     Array.prototype.forEach.call(result, function (e) {
         return data.push(e)
     })
+
+    // usernameProfile.innerHTML = 
 
     for (var i = 0; i < data.length; i++) {
         tr = $('<tr/>');
@@ -42,7 +51,7 @@ connection.query("SELECT * FROM tabel_guru", function (err, result) {
 
     Array.prototype.forEach.call(f, (e) => {
         e.addEventListener('click', () => {
-            ipcRenderer.send('return-value', e.children[1].textContent)
+            elec.ipcRenderer.send('return-value', e.children[1].textContent)
             singleData(win, 'sections/singleData/singleData.html')
         })
     })

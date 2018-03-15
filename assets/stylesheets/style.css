@@ -1,4 +1,16 @@
 /* dataTable */
 .singleData {
+	cursor: pointer
+}
+
+.brand-icon {
+	padding: 7px
+}
+
+ul.head-list > li {
 	cursor: pointer;
+}
+
+#mainnav-container {
+	background-color: #2d3c4b !important
 }

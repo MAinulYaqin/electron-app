@@ -74,14 +74,16 @@ var mainMenuTemplate = [{
     }
 }]
 
-var argument;
-ipcMain.on('return-value', function (e, arg) {
-    argument = arg
+ipcMain.on('return-value', function (e, data) {
+    ipcMain.on('pesan', function (e, arg) {
+        e.sender.send('reply-pesan', data)
+    })
 })
 
-ipcMain.on('pesan', function (e, arg) {
-    console.log(arg) // will return ping
-    e.sender.send('reply-pesan', argument)
+ipcMain.on('username', function (e, username) {
+    ipcMain.on('username-renderer', function (e, arg) {
+        e.sender.send('send-data', username)
+    })
 })
 
 // Another configuration for mac
