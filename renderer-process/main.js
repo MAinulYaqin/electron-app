@@ -1,6 +1,8 @@
+var md5 = require('md5')
 var container = document.getElementById('container')
 var usernameProfile = document.getElementById('username-profile')
 var { singleData } = require('../controllers/window')
+var { showWindow } = require('../controllers/window')
 var elec = require('electron')
 
 var mysql = require('mysql')
@@ -8,8 +10,15 @@ var config = require('../assets/config')
 var connection = mysql.createConnection(config.mysql_config)
 
 
+Array.prototype.forEach.call(document.querySelectorAll('.tambah.guru'), (e) => {
+    let n;
+    e.addEventListener('click', () => {
+        showWindow(n, 'sections/guru/create-guru.html')
+    })
+})
+
 elec.ipcRenderer.send('username-renderer', '')
-elec.ipcRenderer.on('send-data', function (err, arg) {
+elec.ipcRenderer.on('send-data', (err, arg) => {
     console.log(arg)
     usernameProfile.textContent = arg
 })
@@ -22,7 +31,7 @@ connection.query("SELECT * FROM tabel_guru", function (err, result) {
     var data = []
     var tr;
 
-    Array.prototype.forEach.call(result, function (e) {
+    Array.prototype.forEach.call(result, (e) => {
         return data.push(e)
     })
 
@@ -43,7 +52,7 @@ connection.query("SELECT * FROM tabel_guru", function (err, result) {
 
     let f = document.getElementsByClassName('singleData')
     let l = document.getElementById('logout-btn')
-    l.addEventListener('click', function (e) {
+    l.addEventListener('click', (e) => {
         e.preventDefault()
 
         document.location.href = './sections/login/login.html'

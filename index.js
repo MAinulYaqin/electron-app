@@ -114,6 +114,8 @@ if (config.node_env == 'development') {
     mainMenuTemplate.pop()
 }
 
+console.log('this is awesome app :D');
+
 app.on('ready', () => {
     showWindow(mainWin, 'sections/login/login.html', 1250, 666, 800, 600)
     addTopBar(mainMenuTemplate)

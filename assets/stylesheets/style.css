@@ -3,11 +3,21 @@
 	cursor: pointer
 }
 
+/* Icon */
+
 .brand-icon {
 	padding: 7px
 }
 
+/* Logout toggle menu */
+
 ul.head-list > li {
+	cursor: pointer;
+}
+
+/* sidebar */
+
+a.tambah {
 	cursor: pointer;
 }
 
