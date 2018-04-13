@@ -18,12 +18,6 @@ module.exports = {
                 case 'password':
                     formParams[elem.name] = md5(elem.value);
                     break;
-                case 'radio':
-                    elem.checked ? formParams[elem.name] = elem.value : null;
-                    break;
-                case 'checkbox':
-                    elem.checked ? formParams[elem.name] = elem.value : null;
-                    break;
                 default:
                     formParams[elem.name] = elem.value;
                     break;
@@ -31,5 +25,15 @@ module.exports = {
         }
     
         return formParams;
-    }   
+    },
+    clearData : function (formElements) {
+        let f = formElements.elements
+        for (let i of f) {
+            switch (i.type) {
+                default:
+                    i.value = ''
+                    break;
+            }
+        }
+    }
 }

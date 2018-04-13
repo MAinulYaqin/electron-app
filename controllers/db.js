@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var config = require('../assets/config');
 var md5 = require('md5');
 var conn = mysql.createConnection(config.mysql_config);
-var { getFormData } = require('../assets/getFormData');
+var { getFormData, clearData } = require('../assets/getFormData');
 
 module.exports = {
     /**
@@ -62,10 +62,12 @@ module.exports = {
 
         // Insert into database (query), then parsing the data back to JSON
         // after it, check affected rows with console.log
+        
         conn.query(`INSERT INTO ${g} SET ?`, JSON.parse(data), function (err, result, fields) {
             if (err) throw Error;
 
             console.log(result.affectedRows);
+            clearData(document.getElementById(f))
         });
     },
     delete: function (f, g) {
@@ -74,7 +76,6 @@ module.exports = {
             if (err) throw Error;
 
             console.log(result.affectedRows);
-            console.log('=======================');
             console.log(result);
         })
     },
@@ -84,7 +85,6 @@ module.exports = {
             if (err) throw Error;
 
             console.log('affected Rows', result.affectedRows);
-            console.log('=======================');
             console.log(data)
         })
     }
