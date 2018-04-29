@@ -80,10 +80,20 @@ ipcMain.on('return-value', function (e, data) {
     })
 })
 
-ipcMain.on('username', function (e, username) {
-    ipcMain.on('username-renderer', function (e, arg) {
-        e.sender.send('send-data', username)
+ipcMain.on('tendik', function (e, data) {
+    ipcMain.on('data-tendik', function (e, arg) {
+        e.sender.send('return-tendik', data)
     })
+})
+
+let usrname = ''
+// Get the data/username
+ipcMain.on('username', function (e, data) {
+    usrname = data
+})
+// send it to another channel
+ipcMain.on('usrname', (e, data) => {
+    e.sender.send('usrname-render', usrname)
 })
 
 // Another configuration for mac

@@ -28,9 +28,9 @@ module.exports = {
        <div class="data" data="JK"> Showing table's JK </div>
        <div class="data" data="Tempat_lahir"> Showing table's Tempat_lahir </div>
      */
-    single: function (f, d) {
+    single: function (t,f,d) {
         var id;
-        conn.query(`SELECT * FROM tabel_guru WHERE Nama=${JSON.stringify(f)}`, (err, result) => {
+        conn.query(`SELECT * FROM ${t} WHERE Nama=${JSON.stringify(f)}`, (err, result) => {
             if (err) throw Error
     
             let data = [];
