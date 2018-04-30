@@ -36,7 +36,7 @@ Array.prototype.forEach.call(document.querySelectorAll('.tambah.guru'), (e) => {
 Array.prototype.forEach.call(document.querySelectorAll('.tambah.tendik'), (e) => {
     let n;
     e.addEventListener('click', () => {
-        showWindow(n, 'sections/guru/create-guru.html')
+        showWindow(n, 'sections/tendik/create-tendik.html')
     })
 })
 
@@ -118,5 +118,46 @@ connection.query("SELECT * FROM tabel_tendik", function (err, result) {
 
     $(document).ready(function () {
         $('#tendik-table').DataTable()
+    })
+})
+
+let win3;
+connection.query("SELECT * FROM tabel_siswa", function (err, result) {
+    if (err) throw Error
+
+    let data = []
+    let tr;
+    let dt = 'data data-siswa'
+
+    Array.prototype.forEach.call(result, (e) => {
+        return data.push(e)
+    })
+
+    for (var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+
+        tr.attr('class', dt)
+
+        tr.append("<td>" + data[i].No + "</td>");
+        tr.append("<td class=\"data\">" + data[i].Nama + "</td>")
+        tr.append("<td>" + data[i].JK + "</td>");
+        tr.append("<td>" + data[i].NISN + "</td>");
+        tr.append("<td>" + data[i].Rombel + "</td>");
+        $('#siswa-table').append(tr);
+    }
+
+    // let f = document.getElementsByClassName(dt)
+
+    let f = document.getElementsByClassName(dt)
+    Array.prototype.forEach.call(f, (e) => {
+        e.addEventListener('click', () => {
+            ipcRenderer.send('siswa', e.children[1].textContent)
+            console.log(e.children[1].textContent)
+            singleData(win2, 'sections/singleData/data-siswa.html')
+        })
+    })
+
+    $(document).ready(function () {
+        $('#siswa-table').DataTable()
     })
 })

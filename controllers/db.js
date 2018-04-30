@@ -19,14 +19,13 @@ module.exports = {
         })
     },
     /**
+     * @param {String} t
+     * {String} Table's name
      * @param {String} f
-       Search data use Nama
-     * @param {Object} d
-       DOM classname. The data will be showed on div
-     * @example
-       <div class="data" data="Nama"> Showing table's Nama </div>
-       <div class="data" data="JK"> Showing table's JK </div>
-       <div class="data" data="Tempat_lahir"> Showing table's Tempat_lahir </div>
+     * {String} data. username to search on database
+     * @param {Array} d
+     *  {Array} doc.getElementsByClassName.
+     *  the dom should have attributes data
      */
     single: function (t,f,d) {
         var id;
@@ -39,10 +38,10 @@ module.exports = {
             })
 
             Array.prototype.forEach.call(d, (e) => {
-                e.innerHTML = data[0][e.getAttribute('data')]
+                e.innerHTML = `${e.getAttribute('data').replace('_', ' ')} : ${data[0][e.getAttribute('data')]}`
             })
             
-            d[1].textContent === 'L' ? d[1].innerHTML = 'Laki-laki' : d[1].innerHTML = 'Perempuan'
+            d[1].textContent === 'L' ? d[1].innerHTML = 'Jenis Kelamin : Laki-laki' : d[1].innerHTML = 'Jenis Kelamin : Perempuan'
         })
     },
     /**

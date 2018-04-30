@@ -74,6 +74,16 @@ var mainMenuTemplate = [{
     }
 }]
 
+let usrname = ''
+// Get the data/username
+ipcMain.on('username', function (e, data) {
+    usrname = data
+})
+// send it to another channel
+ipcMain.on('usrname', (e, data) => {
+    e.sender.send('usrname-render', usrname)
+})
+
 ipcMain.on('return-value', function (e, data) {
     ipcMain.on('pesan', function (e, arg) {
         e.sender.send('reply-pesan', data)
@@ -86,14 +96,10 @@ ipcMain.on('tendik', function (e, data) {
     })
 })
 
-let usrname = ''
-// Get the data/username
-ipcMain.on('username', function (e, data) {
-    usrname = data
-})
-// send it to another channel
-ipcMain.on('usrname', (e, data) => {
-    e.sender.send('usrname-render', usrname)
+ipcMain.on('siswa', function (e, data) {
+    ipcMain.on('data-siswa', function (e, arg) {
+        e.sender.send('return-siswa', data)
+    })
 })
 
 // Another configuration for mac
