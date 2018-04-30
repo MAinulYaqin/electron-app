@@ -153,7 +153,7 @@ connection.query("SELECT * FROM tabel_siswa", function (err, result) {
         e.addEventListener('click', () => {
             ipcRenderer.send('siswa', e.children[1].textContent)
             console.log(e.children[1].textContent)
-            singleData(win2, 'sections/singleData/data-siswa.html')
+            singleData(win3, 'sections/singleData/data-siswa.html')
         })
     })
 

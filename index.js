@@ -13,57 +13,27 @@ var mainMenuTemplate = [{
         }
     }]
 }, {
-    label: 'Siswa',
-    submenu: [{
-        label: 'Tambahkan Siswa',
-        click() {
-            showWindow(tambah, 'sections/siswa/create-siswa.html', 480, 560)
-        }
-    }, {
-        label: 'Ubah Data Siswa',
-        click() {
-            showWindow(ubah, 'sections/siswa/update-siswa.html', 480, 560)
-        }
-    }, {
-        label: 'Hapus Siswa',
-        click() {
-            showWindow(hapus, 'sections/siswa/delete-siswa.html', 480, 560)
-        }
-    }]
-}, {
     label: 'Guru',
     submenu: [{
         label: 'Tambahkan Guru',
         click() {
-            showWindow(tambah, 'sections/guru/create-guru.html', 480, 560)
-        }
-    }, {
-        label: 'Ubah Data Guru',
-        click() {
-            showWindow(ubah, 'sections/guru/update-guru.html', 480, 560)
-        }
-    }, {
-        label: 'Hapus Data Guru',
-        click() {
-            showWindow(hapus, 'sections/guru/delete-guru.html', 480, 560)
+            showWindow(tambah, 'sections/siswa/create-guru.html', 480, 560)
         }
     }]
 }, {
-    label: 'Mata Pelajaran',
+    label: 'Siswa',
     submenu: [{
-        label: 'Tambahkan Mapel',
+        label: 'Tambahkan Siswa',
         click() {
-            showWindow(tambah, 'sections/mapel/create-mapel.html', 480, 560)
+            showWindow(tambah, 'sections/guru/create-siswa.html', 480, 560)
         }
-    }, {
-        label: 'Ubah Mapel',
+    }]
+}, {
+    label: 'Tendik',
+    submenu: [{
+        label: 'Tambahkan Tendik',
         click() {
-            showWindow(ubah, 'sections/mapel/update-mapel.html', 480, 560)
-        }
-    }, {
-        label: 'Hapus Mapel',
-        click() {
-            showWindow(hapus, 'sections/mapel/delete-mapel.html', 480, 560)
+            showWindow(tambah, 'sections/mapel/create-tendik.html', 480, 560)
         }
     }]
 }, {
