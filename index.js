@@ -1,10 +1,10 @@
-var electron, { app, ipcMain } = require('electron');
-var { showWindow, addTopBar } = require('./controllers/window');
-var config = require('./assets/config');
+let electron, { app, ipcMain } = require('electron');
+let { showWindow, addTopBar } = require('./controllers/window');
+let config = require('./assets/config');
 
 // Empty variable for windows
-var mainWin, tambah, ubah, hapus;
-var mainMenuTemplate = [{
+let mainWin, tambah, ubah, hapus;
+let mainMenuTemplate = [{
     label: 'File',
     submenu: [{
         label: 'Exit',

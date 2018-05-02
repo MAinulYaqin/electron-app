@@ -6,12 +6,11 @@ let { ipcRenderer } = elec || elec.remote
 let container = document.getElementById('container')
 let usrname = document.getElementById('username-profile')
 
-// Logout btn
 let l = document.getElementById('logout-btn')
 l.addEventListener('click', (e) => {
     e.preventDefault()
 
-    document.location.href = '../login/login.html';
+    document.location.href = './sections/login/login.html';
 })
 
 // showing username
@@ -20,7 +19,6 @@ ipcRenderer.on('usrname-render', (e, data) => {
     usrname.textContent = data
 })
 
-// showing adding form when clicked
 showForm('guru')
 showForm('tendik')
 

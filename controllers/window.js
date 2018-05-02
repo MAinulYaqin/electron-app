@@ -10,9 +10,9 @@ var url = require('url');
 
 var mysql = require('mysql')
 var config = require('../assets/config');
-var connection = mysql.createConnection(config.mysql_config)
+var conn = mysql.createConnection(config.mysql_config)
 
-connection.connect(connection);
+conn.connect(conn);
 
 var mainWin;
 module.exports = {
@@ -45,7 +45,7 @@ module.exports = {
 
         win.on('close', () => {
             if (win === mainWin) {
-                connection.end()
+                conn.end()
                 console.log(true)
             }
             setTimeout(() => {

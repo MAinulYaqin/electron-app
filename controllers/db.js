@@ -1,21 +1,23 @@
 // @ts-check
 
-var mysql = require('mysql');
-var config = require('../assets/config');
-var md5 = require('md5');
-var conn = mysql.createConnection(config.mysql_config);
-var { getFormData, clearData } = require('../assets/getFormData');
+let mysql = require('mysql');
+let config = require('../assets/config');
+let md5 = require('md5');
+let electron = require('electron')
+let { ipcRenderer } = electron
+let { singleData } = require('./window')
+let conn = mysql.createConnection(config.mysql_config);
+let { getFormData, clearData } = require('../assets/getFormData');
 
 module.exports = {
-    /**
-     * @param {String} db
-        table's name you want to show
-     */
-    showAll: function (db) {
-        conn.query(`SELECT * FROM ${db}`, function (err, result) {
-            if (err) throw Error;
-
-            console.log(result)
+    showAll: function (f, win, channel, path) {
+        Array.prototype.forEach.call(f, (e) => {
+            e.addEventListener('click', () => {
+                ipcRenderer.send(`${channel}`, e.children[1].textContent)
+                console.log(channel)
+                console.log(path)
+                singleData(win, `./sections/singleData/data-${path}.html`)
+            })
         })
     },
     /**
@@ -28,7 +30,7 @@ module.exports = {
      *  the dom should have attributes data
      */
     single: function (t,f,d) {
-        var id;
+        let id;
         conn.query(`SELECT * FROM ${t} WHERE Nama=${JSON.stringify(f)}`, (err, result) => {
             if (err) throw Error
     
@@ -36,12 +38,14 @@ module.exports = {
             Array.prototype.forEach.call(result, (e) => {
                 data.push(e)
             })
-
+            // replacing names that have _ underscores like alamat_rumah
             Array.prototype.forEach.call(d, (e) => {
                 e.innerHTML = `${e.getAttribute('data').replace('_', ' ')} : ${data[0][e.getAttribute('data')]}`
             })
-            
-            d[1].textContent === 'L' ? d[1].innerHTML = 'Jenis Kelamin : Laki-laki' : d[1].innerHTML = 'Jenis Kelamin : Perempuan'
+            // change the value 
+            // if L to be Laki-laki
+            // if P gonna be Perempuan
+            d[1].textContent === 'JK : L' ? d[1].textContent = 'Jenis Kelamin : Laki-laki' : d[1].textContent = 'Jenis Kelamin : Perempuan'
         })
     },
     /**
@@ -68,23 +72,5 @@ module.exports = {
             console.log(result.affectedRows);
             clearData(document.getElementById(f))
         });
-    },
-    delete: function (f, g) {
-        var data = JSON.parse(f)
-        conn.query(`DELETE FROM ${g} SET ?`, f, (err, result) => {
-            if (err) throw Error;
-
-            console.log(result.affectedRows);
-            console.log(result);
-        })
-    },
-    update: function (f, g) {
-        var data = JSON.parse(f);
-        conn.query(`UPDATE ${g} SET ?`, data, (err, result) => {
-            if (err) throw Error;
-
-            console.log('affected Rows', result.affectedRows);
-            console.log(data)
-        })
     }
 }

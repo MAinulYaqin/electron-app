@@ -128,21 +128,6 @@
 											<i class="pli-male icon-lg icon-fw"></i> Profile
 										</a>
 									</li>
-									<li>
-										<a>
-											<i class="pli-gear icon-lg icon-fw"></i> Settings
-										</a>
-									</li>
-									<li>
-										<a>
-											<i class="pli-information icon-lg icon-fw"></i> Help
-										</a>
-									</li>
-									<li>
-										<a>
-											<i class="pli-computer-secure icon-lg icon-fw"></i> Lock screen
-										</a>
-									</li>
 								</ul>
 
 								<!-- Dropdown footer -->
@@ -331,14 +316,11 @@
 	<!--jQuery [ REQUIRED ]-->
 	<script>
 		window.$ = window.jQuery = require('./assets/javascripts/dataTabels/jquery-1.12.4')
+		require('./renderer-process/index')
 	</script>
 
 	<script src="./assets/javascripts/dataTabels/jquery.dataTables.min.js"></script>
 	<script src="./assets/javascripts/dataTabels/dataTables.bootstrap4.min.js"></script>
-
-	<script>
-		require('./renderer-process/main')
-	</script>
 
 	<!--BootstrapJS [ RECOMMENDED ]-->
 	<script src="assets/javascripts/js/bootstrap.min.js"></script>
