@@ -15,14 +15,12 @@
   "author": "AinulBedjo",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.17.1",
     "concurrently": "^3.5.1",
     "electron-json-storage": "^4.0.2",
     "electron-squirrel-startup": "^1.0.0",
     "electron-winstaller": "^2.6.4",
     "md5": "^2.2.1",
-    "mysql": "^2.15.0",
-    "redis": "^2.8.0"
+    "mysql": "^2.15.0"
   },
   "devDependencies": {
     "electron": "^1.7.12",
