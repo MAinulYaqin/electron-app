@@ -32,7 +32,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Tambah Tendik</h3>
                                 </div>
-                                <form id="tambah-tendik">
+                                <form class="form-horizontal" id="tambah-tendik">
                                     <div class="panel-body">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label" for="Nama">Nama</label>
@@ -169,11 +169,33 @@
 
         })
 
-        $('#tanggal').on('change', () => {
-            let e = document.getElementById('tanggal-input')
-            let f = e.value
+        function getData(formElement) {
+            var formElements = formElement.elements;
+            var formParams = {};
+            var elem;
+        
+            for (let i = 0; i < formElements.length; i++) {
+                elem = formElements[i];
+                switch (elem.type) {
+                    case 'submit':
+                        break;
+                    case 'password':
+                        formParams[elem.name] = elem.value;
+                        break;
+                    default:
+                        formParams[elem.name] = elem.value;
+                        break;
+                }
+            }
+        
+            return formParams;
+        }
 
-            f.split('/').join('-')
+        let f = document.getElementById('tambah-tendik')
+        f.addEventListener('submit', (e) => {
+            e.preventDefault()
+            
+            console.log(getData(f))
         })
 
         // ;require('../../renderer-process/tendik')

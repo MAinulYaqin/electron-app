@@ -7,7 +7,6 @@ module.exports = {
     getFormData : function (formElement) {
         var formElements = formElement.elements;
         var formParams = {};
-        var i = 0;
         var elem;
     
         for (let i = 0; i < formElements.length; i++) {
