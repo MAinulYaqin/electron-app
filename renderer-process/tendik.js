@@ -20,7 +20,7 @@ conn.query("SELECT * FROM tabel_tendik", function (err, result) {
 
         tr.attr('class', dt)
 
-        tr.append("<td>" + data[i].No + "</td>");
+        tr.append("<td>" + data[i].Id + "</td>");
         tr.append("<td class=\"data\">" + data[i].Nama + "</td>")
         tr.append("<td>" + data[i].JK + "</td>");
         tr.append("<td>" + data[i].Status_Kepegawaian + "</td>");

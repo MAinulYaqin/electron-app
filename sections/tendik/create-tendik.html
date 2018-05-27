@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <div id="container" class="effect mainnav-lg">
+    <div id="container" class="effect">
         <div class="boxed">
             <div id="content-container">
                 <div id="page-content">
@@ -132,9 +132,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="Kode_Pos">Kode Pos</label>
+                                            <label class="col-sm-3 control-label" for="kode_Pos">Kode Pos</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="Kode_Pos">
+                                                <input type="text" name="kode_Pos">
                                             </div>
                                         </div>
                                     </div>
@@ -152,8 +152,14 @@
 
     <div id="result"></div>
     <!-- scripts -->
-    <script src="../../assets/javascripts/dataTabels/jquery-1.12.4.js"></script>
-    <!-- window.$ = window.jQuery = require('../../assets/javascripts/dataTabels/jquery-1.12.4') -->
+    <script>
+        window.$ = window.jQuery = require('../../assets/javascripts/dataTabels/jquery-1.12.4')
+        ;require('../../renderer-process/create/tendik')
+
+        $(document).ready(function () {
+            $('#tanggal input').datepicker();
+        })
+    </script>
     <!-- <script src="../../assets/javascripts/js/demo/form-component.js"></script> -->
     <script src="../../assets/javascripts/js/nifty.min.js"></script>
     <script src="../../assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
@@ -163,43 +169,6 @@
     <script src="../../assets/plugins/chosen/chosen.jquery.min.js"></script>
     <script src="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="../../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#tanggal input').datepicker();
-
-        })
-
-        function getData(formElement) {
-            var formElements = formElement.elements;
-            var formParams = {};
-            var elem;
-        
-            for (let i = 0; i < formElements.length; i++) {
-                elem = formElements[i];
-                switch (elem.type) {
-                    case 'submit':
-                        break;
-                    case 'password':
-                        formParams[elem.name] = elem.value;
-                        break;
-                    default:
-                        formParams[elem.name] = elem.value;
-                        break;
-                }
-            }
-        
-            return formParams;
-        }
-
-        let f = document.getElementById('tambah-tendik')
-        f.addEventListener('submit', (e) => {
-            e.preventDefault()
-            
-            console.log(getData(f))
-        })
-
-        // ;require('../../renderer-process/tendik')
-    </script>
 </body>
 
 </html>

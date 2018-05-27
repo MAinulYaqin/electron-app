@@ -12,7 +12,7 @@ var mysql = require('mysql')
 var config = require('../assets/config');
 var conn = mysql.createConnection(config.mysql_config)
 
-conn.connect(conn);
+conn.connect();
 
 var mainWin;
 module.exports = {

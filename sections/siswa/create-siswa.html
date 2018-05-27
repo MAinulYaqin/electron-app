@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Tambah Tendik</title>
+    <title>Tambah Siswa</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../assets/stylesheets/style.css">
 
@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <div id="container" class="effect mainnav-lg">
+    <div id="container" class="effect">
         <div class="boxed">
             <div id="content-container">
                 <div id="page-content">
@@ -30,14 +30,26 @@
                         <div class="col-lg-6">
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Tambah Tendik</h3>
+                                    <h3 class="panel-title">Tambah Siswa</h3>
                                 </div>
-                                <form class="form-horizontal" id="tambah-tendik">
+                                <form class="form-horizontal" id="tambah-siswa">
                                     <div class="panel-body">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Rombel">Rombel</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Rombel" class="form-control">
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label" for="Nama">Nama</label>
                                             <div class="col-sm-9">
                                                 <input type="text" name="Nama" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="NIPD">NIPD</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="NIPD" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -47,6 +59,12 @@
                                                     <option>Laki-laki</option>
                                                     <option>Perempuan</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="NISN">NISN</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="NISN" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -62,25 +80,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="Status_Kepegawaian">Status Kepegawaian</label>
+                                            <label class="col-sm-3 control-label" for="NIK">NIK</label>
                                             <div class="col-sm-9">
-                                                <select class="selectpicker" name="Status_Kepegawaian">
-                                                    <option>Tenaga Honor Sekolah</option>
-                                                    <option>PNS</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="Jenis_PTK">Jenis PTK</label>
-                                            <div class="col-sm-9">
-                                                <select class="selectpicker" name="Jenis_PTK">
-                                                    <option>Tenaga Administrasi Sekolah</option>
-                                                    <option>Tukang Kebun</option>
-                                                    <option>Laboran</option>
-                                                    <option>Petugas Keamanan</option>
-                                                    <option>Tenaga Perpustakaan</option>
-                                                    <option>Pesuruh/Office Boy</option>
-                                                </select>
+                                                <input type="text" name="NIK" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -91,7 +93,6 @@
                                                     <option>Kristen</option>
                                                     <option>Hindu</option>
                                                     <option>Buddha</option>
-                                                    <option>Madoka</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -101,6 +102,7 @@
                                                 <input type="text" name="Alamat">
                                             </div>
                                         </div>
+
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label" for="RT">RT</label>
                                             <div class="col-sm-9">
@@ -114,9 +116,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="Nama_Dusun">Nama Dusun</label>
+                                            <label class="col-sm-3 control-label" for="Dusun">Nama Dusun</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="Nama_Dusun">
+                                                <input type="text" name="Dusun">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -132,9 +134,370 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label" for="Kode_Pos">Kode Pos</label>
+                                            <label class="col-sm-3 control-label" for="kode_Pos">Kode Pos</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="Kode_Pos">
+                                                <input type="text" name="kode_Pos">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Jenis_Tinggal">Tinggal Bersama</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Jenis_Tinggal">
+                                                    <option>Bersama orang tua</option>
+                                                    <option>Wali</option>
+                                                    <option>Kost</option>
+                                                    <option>Lainnya</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Alat_Transportasi">Alat Transportasi</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Alat_Transportasi">
+                                                    <option>Sepeda</option>
+                                                    <option>Sepeda Motor</option>
+                                                    <option>Angkutan umum/bus/pete-pete</option>
+                                                    <option>Jalan kaki</option>
+                                                    <option>Lainnya</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Telepon">No. Telepon</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Telepon">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="HP">No. HP</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="HP">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="E-Mail">E-Mail</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="E-Mail">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="SKHUN">SKHUN</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="SKHUN">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Penerima_KPS">Penerima KPS</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Penerima_KPS">
+                                                    <option>Ya</option>
+                                                    <option>Tidak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="No_KPS">No. KPS</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="No_KPS">
+                                                    <option>Ya</option>
+                                                    <option>Tidak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Nama_Ayah">Nama Ayah</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Nama_Ayah">
+                                            </div>
+                                        </div>
+                                        <div id="tanggal" class="form-group">
+                                            <label class="col-sm-3 control-label" for="Tahun_lahir_Ayah">Tahun Lahir Ayah</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Tahun_lahir_Ayah">
+                                                    <option>1991</option>
+                                                    <option>1992</option>
+                                                    <option>1993</option>
+                                                    <option>1994</option>
+                                                    <option>1995</option>
+                                                    <option>1996</option>
+                                                    <option>1997</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div id="tanggal" class="form-group">
+                                            <label class="col-sm-3 control-label" for="Pendidikan_Ayah">Pendidikan Ayah</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Pendidikan_Ayah">
+                                                    <option>SD / sederajat</option>
+                                                    <option>Putus SD</option>
+                                                    <option>SMP / sederajat</option>
+                                                    <option>Putus SMP</option>
+                                                    <option>SMA / sederajat</option>
+                                                    <option>Putus SMA</option>
+                                                    <option>D1</option>
+                                                    <option>D2</option>
+                                                    <option>D3</option>
+                                                    <option>D4</option>
+                                                    <option>S1</option>
+                                                    <option>S2</option>
+                                                    <option>Tidak Sekolah</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Pekerjaan_Ayah">Pekerjaan Ayah</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Pekerjaan_Ayah">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Penghasilan_Ayah">Penghasilan Ayah</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Penghasilan_Ayah">
+                                                    <option>Kurang dari Rp. 500,000</option>
+                                                    <option>Rp. 500,000 - Rp. 999,999</option>
+                                                    <option>Rp. 1,000,000 - Rp. 1.999,999</option>
+                                                    <option>Rp. 2,000,000 - Rp. 4.999,999</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="NIK_Ayah">NIK Ayah</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="NIK_Ayah">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Nama_Ibu">Nama Ibu</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Nama_Ibu">
+                                            </div>
+                                        </div>
+                                        <div id="tanggal" class="form-group">
+                                            <label class="col-sm-3 control-label" for="Tahun_lahir_Ibu">Tahun Lahir Ibu</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Tahun_lahir_Ibu">
+                                                    <option>1991</option>
+                                                    <option>1992</option>
+                                                    <option>1993</option>
+                                                    <option>1994</option>
+                                                    <option>1995</option>
+                                                    <option>1996</option>
+                                                    <option>1997</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div id="tanggal" class="form-group">
+                                            <label class="col-sm-3 control-label" for="Pendidikan_Ibu">Pendidikan Ibu</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Pendidikan_Ibu">
+                                                    <option>SD / sederajat</option>
+                                                    <option>Putus SD</option>
+                                                    <option>SMP / sederajat</option>
+                                                    <option>Putus SMP</option>
+                                                    <option>SMA / sederajat</option>
+                                                    <option>Putus SMA</option>
+                                                    <option>D1</option>
+                                                    <option>D2</option>
+                                                    <option>D3</option>
+                                                    <option>D4</option>
+                                                    <option>S1</option>
+                                                    <option>S2</option>
+                                                    <option>Tidak Sekolah</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Pekerjaan_Ibu">Pekerjaan Ibu</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Pekerjaan_Ibu">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Penghasilan_Ibu">Penghasilan Ibu</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Penghasilan_Ibu">
+                                                    <option>Kurang dari Rp. 500,000</option>
+                                                    <option>Rp. 500,000 - Rp. 999,999</option>
+                                                    <option>Rp. 1,000,000 - Rp. 1.999,999</option>
+                                                    <option>Rp. 2,000,000 - Rp. 4.999,999</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="NIK_Ibu">NIK Ibu</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="NIK_Ibu">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Nama_Wali">Nama Wali</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Nama_Wali">
+                                            </div>
+                                        </div>
+                                        <div id="tanggal" class="form-group">
+                                            <label class="col-sm-3 control-label" for="Tahun_lahir_Wali">Tahun Lahir Wali</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Tahun_lahir_Wali">
+                                                    <option>1991</option>
+                                                    <option>1992</option>
+                                                    <option>1993</option>
+                                                    <option>1994</option>
+                                                    <option>1995</option>
+                                                    <option>1996</option>
+                                                    <option>1997</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div id="tanggal" class="form-group">
+                                            <label class="col-sm-3 control-label" for="Pendidikan_Wali">Pendidikan Wali</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Pendidikan_Wali">
+                                                    <option>SD / sederajat</option>
+                                                    <option>Putus SD</option>
+                                                    <option>SMP / sederajat</option>
+                                                    <option>Putus SMP</option>
+                                                    <option>SMA / sederajat</option>
+                                                    <option>Putus SMA</option>
+                                                    <option>D1</option>
+                                                    <option>D2</option>
+                                                    <option>D3</option>
+                                                    <option>D4</option>
+                                                    <option>S1</option>
+                                                    <option>S2</option>
+                                                    <option>Tidak Sekolah</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Pekerjaan_Wali">Pekerjaan Wali</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Pekerjaan_Wali">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Penghasilan_Wali">Penghasilan Wali</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Penghasilan_Wali">
+                                                    <option>Kurang dari Rp. 500,000</option>
+                                                    <option>Rp. 500,000 - Rp. 999,999</option>
+                                                    <option>Rp. 1,000,000 - Rp. 1.999,999</option>
+                                                    <option>Rp. 2,000,000 - Rp. 4.999,999</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="NIK_Wali">NIK Wali</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="NIK_Wali">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="No_UN">No UN</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="No_UN">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="No_Ijazah">No Ijazah</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="No_Ijazah">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Penerima_KIP">Penerima KIP</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Penerima_KIP">
+                                                    <option>Ya</option>
+                                                    <option>Tidak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="No_KIP">No. KIP</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="No_KIP">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Nama_KIP">Nama KIP</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Nama_KIP">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="No_KKS">No. KKS</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="No_KKS">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="No_Akta_Lahir">No. Akta Lahir</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="No_Akta_Lahir">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Bank">Bank</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Bank">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Rekening">Rekening</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Rekening">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Nama_Rekening">Nama Rekening</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Nama_Rekening">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Layak_PIP">Layak PIP</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Layak_PIP">
+                                                    <option>Ya</option>
+                                                    <option>Tidak</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Alasan_PIP">Alasan PIP</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Alasan_PIP">
+                                                    <option>Pemegang PKH/KPS/KKS</option>
+                                                    <option>Siswa Miskin/Rentan Miskin</option>
+                                                    <option>Yatim Piatu/Panti Asuhan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Kebutuhan_Khusus">Kebutuhan Khusus</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Kebutuhan_Khusus">
+                                                    <option>A - Tuna Netra</option>
+                                                    <option>B - Tuna Rungu</option>
+                                                    <option>E - Tuna Laras</option>
+                                                    <option>Q - Autis</option>
+                                                    <option>K - Kesulitan Belajar</option>
+                                                    <option>E,K</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Sekolah_Asal">Sekolah Asal</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Sekolah_Asal">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Anak_Ke">Anak Ke-</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Anak_Ke">
                                             </div>
                                         </div>
                                     </div>
@@ -152,8 +515,14 @@
 
     <div id="result"></div>
     <!-- scripts -->
-    <script src="../../assets/javascripts/dataTabels/jquery-1.12.4.js"></script>
-    <!-- window.$ = window.jQuery = require('../../assets/javascripts/dataTabels/jquery-1.12.4') -->
+    <script>
+        window.$ = window.jQuery = require('../../assets/javascripts/dataTabels/jquery-1.12.4');
+        require('../../renderer-process/create/siswa')
+
+        $(document).ready(function () {
+            $('#tanggal input').datepicker();
+        })
+    </script>
     <!-- <script src="../../assets/javascripts/js/demo/form-component.js"></script> -->
     <script src="../../assets/javascripts/js/nifty.min.js"></script>
     <script src="../../assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
@@ -163,21 +532,6 @@
     <script src="../../assets/plugins/chosen/chosen.jquery.min.js"></script>
     <script src="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="../../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#tanggal input').datepicker();
-
-        })
-
-        $('#tanggal').on('change', () => {
-            let e = document.getElementById('tanggal-input')
-            let f = e.value
-
-            f.split('/').join('-')
-        })
-
-        // ;require('../../renderer-process/tendik')
-    </script>
 </body>
 
 </html>

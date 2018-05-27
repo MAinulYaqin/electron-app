@@ -1,13 +1,11 @@
-// @ts-check
-
-let mysql = require('mysql');
-let config = require('../assets/config');
-let md5 = require('md5');
+let mysql = require('mysql')
+let config = require('../assets/config')
+let md5 = require('md5')
 let electron = require('electron')
-let { ipcRenderer } = electron
-let { singleData } = require('./window')
-let conn = mysql.createConnection(config.mysql_config);
-let { getFormData, clearData } = require('../assets/getFormData');
+let {ipcRenderer} = electron
+let {singleData} = require('./window')
+let conn = mysql.createConnection(config.mysql_config)
+let {getFormData, clearData} = require('../assets/getFormData')
 
 module.exports = {
     showAll: function (f, win, channel, path) {
@@ -29,11 +27,11 @@ module.exports = {
      *  {Array} doc.getElementsByClassName.
      *  the dom should have attributes data
      */
-    single: function (t,f,d) {
+    single: function (t, f, d) {
         let id;
         conn.query(`SELECT * FROM ${t} WHERE Nama=${JSON.stringify(f)}`, (err, result) => {
             if (err) throw Error
-    
+
             let data = [];
             Array.prototype.forEach.call(result, (e) => {
                 data.push(e)
@@ -58,19 +56,18 @@ module.exports = {
         // Get form's id
         let params = getFormData(document.getElementById(f));
         // Change data to string and display it
-        let data = JSON.stringify(params, null, '');
-        // document.getElementById('result').innerHTML = data;
-        // Check the data | development
-        console.log(JSON.parse(data))
-
+        // let data = JSON.stringify(params, null, '');
+        let lul = {}
         // Insert into database (query), then parsing the data back to JSON
         // after it, check affected rows with console.log
-        
-        conn.query(`INSERT INTO ${g} SET ?`, JSON.parse(data), function (err, result, fields) {
+        Object.assign(lul, params)
+        console.log(lul)
+        conn.query(`INSERT INTO ${g} SET ?`, lul, function (err, result) {
             if (err) throw Error;
 
             console.log(result.affectedRows);
             clearData(document.getElementById(f))
+            lul = {}
         });
     }
 }

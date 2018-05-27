@@ -23,6 +23,7 @@ ipcRenderer.on('usrname-render', (e, data) => {
 // showing adding form when clicked
 showForm('guru')
 showForm('tendik')
+showForm('siswa')
 
 function showForm (f) {
     Array.prototype.forEach.call(document.querySelectorAll(`.tambah.${f}`), (e) => {

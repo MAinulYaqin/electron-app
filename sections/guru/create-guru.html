@@ -2,56 +2,171 @@
 <html>
 
 <head>
-	<title>Tambah Guru</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="../../assets/stylesheets/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="../../assets/stylesheets/style.css">
+    <title>Tambah Guru</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/stylesheets/style.css">
+
+    <link rel="stylesheet" href="../../assets/stylesheets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/bootstrap-select/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../../assets/stylesheets/css/nifty.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/chosen/chosen.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/switchery/switchery.min.css">
+
+    <link rel="stylesheet" href="../../assets/stylesheets/css/demo/nifty-demo.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../../assets/plugins/pace/pace.min.css">
+    <script src="../../assets/plugins/pace/pace.min.js"></script>
 </head>
 
 <body>
-	<div class="input-group">
-		<form id="tambah-guru">
-			<div class="row">
-				<div class="form-control">
-					<label for="nama_guru">Nama</label>
-					<input type="text" name="nama_guru" required title="nama">
-				</div>
-				<div class="form-control">
-					<label for="kelamin">Jenis Kelamin</label>
-					<select class="btn" name="kelamin" id="kelamin">
-						<option>L</option>
-						<option>P</option>
-					</select>
-				</div>
-				<div class="form-control">
-					<label for="ttl">Tempat Tanggal Lahir</label><br>
-					<input type="text" name="ttl" required title="YYYY-MM-DD">
-				</div>
-				<div class="form-control">
-					<label for="alamat">Alamat</label>
-					<input type="text" name="alamat" required title="">
-				</div>
-				<div class="form-control">
-					<label for="mapel">Mata Pelajaran</label>
-					<input type="text" name="mapel" required>
-				</div>
+    <div id="container" class="effect">
+        <div class="boxed">
+            <div id="content-container">
+                <div id="page-content">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Tambah Guru</h3>
+                                </div>
+                                <form class="form-horizontal" id="tambah-guru">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Nama">Nama</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Nama" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="JK">Jenis Kelamin</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="JK">
+                                                    <option>Laki-laki</option>
+                                                    <option>Perempuan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Tempat_lahir">Kota Lahir</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Tempat_lahir" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div id="tanggal" class="form-group">
+                                            <label class="col-sm-3 control-label" for="Tanggal_lahir">Tanggal Lahir</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Tanggal_lahir" id="tanggal-input" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Status_Kepegawaian">Status Kepegawaian</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Status_Kepegawaian">
+                                                    <option>CPNS</option>
+                                                    <option>PNS</option>
+                                                    <option>Guru Honor</option>
+                                                    <option>GTY/PTY</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Jenis_PTK">Jenis PTK</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Jenis_PTK">
+                                                    <option>Guru Mapel</option>
+                                                    <option>Guru BK</option>
+                                                    <option>Kepala Sekolah</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Agama">Agama</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker" name="Agama">
+                                                    <option>Islam</option>
+                                                    <option>Kristen</option>
+                                                    <option>Hindu</option>
+                                                    <option>Buddha</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Alamat_jalan">Alamat</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Alamat_jalan">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="RT">RT</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="RT">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="RW">RW</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="RW">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Nama_Dusun">Nama Dusun</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Nama_Dusun">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Kelurahan">Kelurahan</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Kelurahan">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="Kecamatan">Kecamatan</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="Kecamatan">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="kode_Pos">Kode Pos</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="kode_Pos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer text-right">
+                                        <button class="btn btn-primary" type="submit" id="btn1">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-				<div class="form-control">
-					<label for="wakil_kls">Wakil Kelas</label>
-					<input type="text" name="wakil_kls" required title="Ex: XI-RPL 1">
-				</div>
-				<button type="submit" id="btn1" class="btn btn-primary">Tambahkan</button>
-			</div>
-		</form>
-	</div>
+    <div id="result"></div>
+    <!-- scripts -->
+    <script>
+        window.$ = window.jQuery = require('../../assets/javascripts/dataTabels/jquery-1.12.4')
+        ;require('../../renderer-process/create/guru')
 
-	<div id="result"></div>
+        $(document).ready(function () {
+            $('#tanggal input').datepicker();
+        })
+    </script>
+    <!-- <script src="../../assets/javascripts/js/demo/form-component.js"></script> -->
+    <script src="../../assets/javascripts/js/nifty.min.js"></script>
+    <script src="../../assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="../../assets/javascripts/js/bootstrap.min.js"></script>
+    <script src="../../assets/plugins/fast-click/fastclick.min.js"></script>
+    <script src="../../assets/plugins/switchery/switchery.min.js"></script>
+    <script src="../../assets/plugins/chosen/chosen.jquery.min.js"></script>
+    <script src="../../assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="../../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 </body>
-
-<script>
-	;require('../../renderer-process/guru')
-</script>
 
 </html>
