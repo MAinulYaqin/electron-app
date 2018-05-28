@@ -17,7 +17,7 @@ let mainMenuTemplate = [{
     submenu: [{
         label: 'Tambahkan Guru',
         click() {
-            showWindow(tambah, 'sections/guru/create-guru.html', 480, 560)
+            showWindow(tambah, 'sections/guru/create-guru.html')
         }
     }]
 }, {
@@ -25,7 +25,7 @@ let mainMenuTemplate = [{
     submenu: [{
         label: 'Tambahkan Siswa',
         click() {
-            showWindow(tambah, 'sections/siswa/create-siswa.html', 480, 560)
+            showWindow(tambah, 'sections/siswa/create-siswa.html')
         }
     }]
 }, {
@@ -33,7 +33,7 @@ let mainMenuTemplate = [{
     submenu: [{
         label: 'Tambahkan Tendik',
         click() {
-            showWindow(tambah, 'sections/tendik/create-tendik.html', 480, 560)
+            showWindow(tambah, 'sections/tendik/create-tendik.html')
         }
     }]
 }, {

@@ -69,5 +69,26 @@ module.exports = {
             clearData(document.getElementById(f))
             lul = {}
         });
+    },
+    /**
+     * @param {String} e
+        button's id
+     * @param {String} f
+        table's name
+     */
+    deleteData: function (e, f) {
+        let a = document.getElementById(`hapus-${e}`)
+        let g = document.querySelectorAll('[data=Nama]')
+
+        a.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            console.log(g)
+            conn.query(`DELETE FROM ${f} WHERE Nama=?`, g[0].textContent.replace("Nama", '').replace(':', '').split(' ').slice(2).join(' '), (err, result) => {
+                if (err) console.log(err)
+
+                console.log(result)
+            })
+        })
     }
 }
